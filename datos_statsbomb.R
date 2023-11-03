@@ -35,4 +35,4 @@ process_and_save_data <- function(competition_id_input, season_name_input, name_
 
 
 # AGREGAR COMPETICIONES A OBTENER
-process_and_save_data(11, '2011/2012', 'liga_11-12')
+process_and_save_data(11, '2015/2016', 'liga_15_16')
