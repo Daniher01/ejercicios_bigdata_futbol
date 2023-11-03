@@ -86,7 +86,7 @@ theme(legend.position = "none",
       plot.background = element_rect(fill = "#252525", colour = "transparent"),
       panel.grid.minor.x = element_blank(),
       panel.grid = element_line(colour = "grey50", size = 0.1),
-      text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 15),
+      text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 30),
       axis.ticks = element_line(colour = COL_TEXT_LINES),
       axis.text = element_text(colour = COL_TEXT_LINES),
       axis.title = element_text(colour = COL_TEXT_LINES),
@@ -102,3 +102,5 @@ p2 = ggdraw() +
 
 p2
   
+# guardar la imagen
+ggsave("ejercicios/rendimiento de equipos por su xG/scatterplot_liga_2015_2016.png", width = 12, height = 10)
