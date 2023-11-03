@@ -10,7 +10,7 @@ library(readr)
 competitions <- FreeCompetitions()
 
 # funcion para obtener los datos de la competicion
-process_and_save_data <- function(competition_id_input, season_name_input, data = competitions) {
+process_and_save_data <- function(competition_id_input, season_name_input, name_file, data = competitions) {
 
   # extraer y transformar los datos
   competition <- data %>% 
@@ -26,13 +26,13 @@ process_and_save_data <- function(competition_id_input, season_name_input, data 
   competition_name = gsub(" ", "_",competition$competition_name)
   competition_season = gsub(" ", "",competition$season_name)
   
-  nombre_archivo_1 <- paste("data/statsbomb_",tolower(competition_name),"_",competition_season,"_events.csv")
+  nombre_archivo_1 <- paste("data/statsbomb_",name_file,"_events.csv")
   write_csv(competition_events_cleaned, nombre_archivo_1)
   
-  nombre_archivo_2 <- paste("data/statsbomb_",tolower(competition_name),"_",competition_season,"_games.csv")
+  nombre_archivo_2 <- paste("data/statsbomb_",name_file,"_games.csv")
   write_csv(competition_games, nombre_archivo_2)  
 }
 
 
 # AGREGAR COMPETICIONES A OBTENER
-process_and_save_data(43, 2022)
+process_and_save_data(11, '2011/2012')
