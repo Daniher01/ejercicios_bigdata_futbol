@@ -5,8 +5,6 @@ library(dplyr)
 # leer los datos
 liga_15_16 = read_csv('data/statsbomb_ liga_15_16 _events.csv') %>% clean_names()
 
-liga_15_16_games = read_csv('data/statsbomb_ liga_15_16 _games.csv') %>% clean_names()
-
 
 # filtrar los tiros no bloqueados y que no sean de penalti, con las columnas seleccionadas
 target_shots = liga_15_16 %>%
