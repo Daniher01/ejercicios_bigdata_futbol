@@ -6,6 +6,7 @@ library(jsonlite)
 
 # leer los datos
 liga_23_24 = read_delim('data/understat_liga_23_24_games.csv', delim = ';') %>% clean_names()
+liga_23_24 <- rename(liga_23_24, team = title)
 
 # REAJUSTAR PPDA
 
@@ -29,8 +30,8 @@ liga_23_24 = liga_23_24 %>%
                      ppda_allowed = att_ppda_allowed/def_ppda_allowed)
 
 # GRAFICA xG a favor y xG en contra
-team_stats = liga_23_24 %>%
-          group_by(title) %>%
+team_stats_liga = liga_23_24 %>%
+          group_by(team) %>%
           summarise(total_xg = sum(npx_g),
                     total_xg_a = sum(npx_ga),
                     goals = sum(scored),
@@ -41,9 +42,11 @@ team_stats = liga_23_24 %>%
                     ocaciones_gol_against = mean(deep_allowed),
                     wins = sum(wins),
                     draws = sum(draws),
-                    loses = sum(loses))
+                    loses = sum(loses),
+                    avg_xg_for_per_game = mean(npx_g),
+                    avg_xg_against_per_game = mean(npx_ga))
 
-write_csv(team_stats, 'ejercicios/rendimiento Girona liga 23 24/stats_teams.csv') 
+write_csv(team_stats_liga, 'ejercicios/rendimiento Girona liga 23 24/stats_teams.csv') 
 
 
             
