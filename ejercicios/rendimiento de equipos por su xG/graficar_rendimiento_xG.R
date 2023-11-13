@@ -62,13 +62,13 @@ geom_abline(slope = MEAN_XG_AGAINST/MEAN_XG_FOR, intercept = 0,
 # promedio xG a favor
 geom_hline(yintercept = MEAN_XG_AGAINST, linetype = 2, 
            linewidth = 0.8, col = "#fe9929") +
-annotate("text", x = MIN_AXIS + DELTA, y = MEAN_XG_AGAINST + DELTA, size = 5,
+annotate("text", x = MIN_AXIS + DELTA, y = MEAN_XG_AGAINST + DELTA, size = 10,
          label = "Avg. NPxG en contra por juego", col = "#fe9929", hjust = 0,
          family ='firasans') +
 # promedio xG en contra
 geom_vline(xintercept = MEAN_XG_FOR, linetype = 2, 
            linewidth = 0.8, col = "#41b6c4") +
-annotate("text", x = MEAN_XG_FOR + DELTA, y = MIN_AXIS + DELTA + DELTA, size = 5,
+annotate("text", x = MEAN_XG_FOR + DELTA, y = MIN_AXIS + DELTA + DELTA, size = 10,
          label = "Avg. NPxG a favor por juego", col = "#41b6c4", hjust = 0,
          family ='firasans') +  
 # temas, etiquetas y axis
