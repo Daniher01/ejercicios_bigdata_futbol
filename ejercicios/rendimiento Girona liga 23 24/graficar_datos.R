@@ -51,24 +51,31 @@ team_stats_with_logos = team_stats %>%
 # graficar 
 p1 = ggplot(data = team_stats_with_logos, 
             aes(x = avg_xg_for_per_game, y = avg_xg_against_per_game)) +
-# diagonal
-geom_abline(slope = MEAN_XG_AGAINST/MEAN_XG_FOR, intercept = 0, 
-            linetype = 2, col = "#fff7bc", linewidth = 0.5, alpha = 0.7) +
+
 # promedio xG a favor
 geom_hline(yintercept = MEAN_XG_AGAINST, linetype = 2, 
            linewidth = 0.8, col = "#fe9929") +
 annotate("text", x = MIN_AXIS + DELTA, y = MEAN_XG_AGAINST + DELTA, size = 10,
-         label = "Avg. NPxG en contra por juego", col = "#fe9929", hjust = 0,
+         label = "Promedio NPxG en contra por juego", col = "#fe9929", hjust = 0,
          family ='firasans') +
 # promedio xG en contra
 geom_vline(xintercept = MEAN_XG_FOR, linetype = 2, 
            linewidth = 0.8, col = "#41b6c4") +
 annotate("text", x = MEAN_XG_FOR + DELTA, y = MIN_AXIS + DELTA + DELTA, size = 10,
-         label = "Avg. NPxG a favor por juego", col = "#41b6c4", hjust = 0,
+         label = "Promedio NPxG a favor por juego", col = "#41b6c4", hjust = 0,
          family ='firasans') + 
 # textos complementarios
-  annotate("text", x = 1.38 , y = 1.38, size = 10,
-           label = "Excelente Rendimiento", col = "#41b6c4", hjust = 0,
+  annotate("text", x = 1.4 , y = 1.3, size = 10,
+           label = "Excelente Rendimiento", col = "grey90", hjust = 0,
+           family ='firasans') +
+  annotate("text", x = 1.18 , y = 1.3, size = 10,
+           label = "Rendimiento Aceptable", col = "grey90", hjust = 0,
+           family ='firasans') +
+  annotate("text", x = 1.2 , y = 1.43, size = 10,
+           label = "Mal Rendimiento", col = "grey90", hjust = 0,
+           family ='firasans') +
+  annotate("text", x = 1.4 , y = 1.43, size = 10,
+           label = "Buen Rendimiento", col = "grey90", hjust = 0,
            family ='firasans') +
   # temas, etiquetas y axis
   theme_minimal() +
@@ -76,7 +83,7 @@ annotate("text", x = MEAN_XG_FOR + DELTA, y = MIN_AXIS + DELTA + DELTA, size = 1
                      breaks = seq(MIN_AXIS, MAX_AXIS, 0.1), expand = c(0,0)) +
   scale_x_continuous(limits = c(MIN_AXIS - DELTA, MAX_AXIS + DELTA), 
                      breaks = seq(MIN_AXIS, MAX_AXIS, 0.1), expand = c(0,0)) +
-  labs(x = "\nAvg. NPxG a favor por juego", y = "Avg. NPxG en contra por juego\n", 
+  labs(x = "\nPromedio NPxG a favor por juego", y = "Promedio NPxG en contra por juego\n", 
        title = "Avg. NPxG a favor y en contra por juego",
        subtitle = "Liga Española 20123-2024 (Hasta la Jornada 13)\n",
        caption = "@dhernandez_dev  |  Data: understat") +
