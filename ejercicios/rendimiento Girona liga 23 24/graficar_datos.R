@@ -3,6 +3,7 @@ library(ggplot2)
 library(janitor)
 library(readr)
 library(dplyr)
+library(forcats)
 
 # paquete para unir graficos
 library(cowplot)
@@ -48,7 +49,8 @@ team_stats_with_logos = team_stats %>%
                        tolower(str_replace_all(team, " ", "")), ".png"))
 
 
-# graficar 
+
+# ------------------------------------------------- GRAFICAR COORDENADAS DE xG Y xGA -------------------------------------------
 p1 = ggplot(data = team_stats_with_logos, 
             aes(x = avg_xg_for_per_game, y = avg_xg_against_per_game)) +
 
@@ -110,3 +112,60 @@ p2
 
 # guardar la imagen
 ggsave("ejercicios/rendimiento Girona liga 23 24/scatterplot_liga_23_24.png", width = 12, height = 10)
+
+# ------------------------------------------------- GRAFICAR BARRAS DE PPDA -------------------------------------------
+# DEFINIR CONSTANTES
+MEAN_PPDA = round(mean(team_stats$ppda_mean), 2)
+COLOR_GIRONA = "#e31a1c"
+
+
+g1 = ggplot(data = team_stats, 
+       aes(x = fct_reorder(team, ppda_mean), y = ppda_mean, fill=(team=="Girona"))) +
+  # linea horizontal
+  geom_hline(yintercept = MEAN_PPDA, linetype = 2, 
+             linewidth = 0.8, col = COL_TEXT_LINES) +
+
+  # barra
+  geom_bar(stat = "identity", col = COL_TEXT_LINES, alpha = 0.7, width = 0.8) + 
+  coord_flip() +
+  theme_bw() +
+  # textos
+  labs(x = "\nEquipos", y = "PPDA promedio por juego\n",
+       title = "Pases Permitidos por Acción Defensiva",
+       subtitle = "Liga Española 2023-2024 (Hasta la Jornada 13)\n",
+       caption = "@dhernandez_dev  |  Data: understat") +
+  annotate("text", x = 7, y = MEAN_PPDA + DELTA, size = 10,
+           label = "PPDA promedio de la liga", col = COL_TEXT_LINES, hjust = 0,
+           family ='firasans') +
+  # escalar el grafico  
+  scale_y_continuous(breaks = seq(0, 18, 2), labels = seq(0, 18, 2), limits = c(0, 18)) +
+  # tema
+  theme(panel.background = element_rect(fill = "#252525", colour = COL_TEXT_LINES),
+        plot.background = element_rect(fill = "#252525", colour = "transparent"),
+        panel.grid.minor.x = element_blank(),
+        panel.grid = element_line(colour = "grey50", size = 0.1),
+        axis.ticks = element_line(colour = COL_TEXT_LINES),
+        axis.text = element_text(colour = COL_TEXT_LINES),
+        title = element_text(colour = COL_TEXT_LINES),
+        text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 40),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        legend.position = "none") +
+  # label
+  geom_text(aes(label = round(ppda_mean, 0)),  hjust = 1.5, col = COL_TEXT_LINES, size = 10) +
+  # colores
+  scale_fill_manual(values=c("TRUE"= COLOR_GIRONA, "FALSE"="gray"))
+
+
+g2 = ggdraw() +
+  draw_plot(g1) +
+  draw_image("ejercicios/rendimiento de equipos por su xG/images/liga.png",  
+             x = 0.4, y = 0.45, scale = 0.1)
+
+g2
+
+# guardar la imagen
+ggsave("ejercicios/rendimiento Girona liga 23 24/ppda_girona_23_24.png", width = 12, height = 10)
+
+
+
+

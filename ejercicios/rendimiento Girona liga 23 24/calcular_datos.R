@@ -43,6 +43,7 @@ team_stats_liga = liga_23_24 %>%
                     wins = sum(wins),
                     draws = sum(draws),
                     loses = sum(loses),
+                    avg_goals_for_per_game = mean(scored),
                     avg_xg_for_per_game = mean(npx_g),
                     avg_xg_against_per_game = mean(npx_ga))
 
