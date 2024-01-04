@@ -34,6 +34,26 @@ events = events %>%
                                             pass_end_pos_y_meter >= 73/3*2 & pass_end_pos_y_meter < 73/3*3 ~ 3),
                                    0))
 
+premier_events_goals = events %>%
+  mutate(is_goal = ifelse(is.na(shot_outcome_name) | shot_outcome_name != "Goal", 0, 1),
+         is_own_goal_for = ifelse(type_name == "Own Goal For", 1, 0))
+
+goles_stats = premier_events_goals %>%
+  left_join(games %>% select(match_id, home_team = home_team_home_team_name, away_team = away_team_away_team_name),
+            by = "match_id") %>%
+  group_by(match_id) %>% 
+  mutate(home_team_score = cumsum(ifelse(team_name == home_team & (is_goal == 1 | is_own_goal_for == 1), 1, 0)),
+         away_team_score = cumsum(ifelse(team_name == away_team & (is_goal == 1 | is_own_goal_for == 1), 1, 0)))
+
+events = goles_stats %>%
+  mutate(contexto = case_when((team_name == home_team & home_team_score > away_team_score) |
+                                              (team_name == away_team & home_team_score < away_team_score) ~ "ganando",
+                                            
+                                            (team_name == home_team & home_team_score < away_team_score) |
+                                              (team_name == away_team & home_team_score > away_team_score) ~ "perdiendo",
+                                            
+                                            T ~ "empatando"))
+
 TEAM = "Leicester City"
 
 # relacion xG - goles
@@ -151,10 +171,52 @@ write_csv(corner, "data/corners_premier_15_16.csv")
 # Calcular el total de presiones de presión por equipo y  zona
 pressures = events %>%
   filter(type_name == "Pressure") %>%
-  group_by(team_name, zone_x, zone_y) %>%
+  group_by(team_name, zone_x, zone_y ) %>%
   summarise(presion = n())
 
 write_csv(pressures, "data/pressures_premier_15_16.csv")
 
-  
+pressures_context_team = events %>%
+  filter(type_name == "Pressure", team_name == TEAM) %>%
+  group_by(team_name, zone_x, contexto ) %>%
+  summarise(presion = n())
 
+write_csv(pressures_context_team, "data/pressures_licester_context_premier_15_16.csv")
+
+
+# ---------- zonas de pases 
+pases_recepciones_precisas_team = events %>%
+  filter((type_name == "Pass" & is.na(pass_outcome_name) | 
+                              (type_name == "Ball Receipt*" & is.na(ball_receipt_outcome_name)))) %>%
+  mutate(time_in_poss = ifelse(time_in_poss > 200, 200, time_in_poss)) %>%  # corrige errores en los datos
+  group_by(team = possession_team_name, possession, match_id, contexto) %>%
+  summarise(n_pass = n(),
+            poss_time = max(time_in_poss))
+
+poss_stats_state = pases_recepciones_precisas_team %>%
+  group_by(team, match_id, contexto) %>%
+  summarise(n_poss = n(),
+            total_pass = sum(n_pass),
+            total_poss_time_min = sum(poss_time)/60)
+
+poss_stats_state_full = poss_stats_state %>% 
+  left_join(poss_stats_state %>% 
+              select(match_id, opp_team = team, opp_total_poss_time_min = total_poss_time_min, 
+                     opp_score_state = contexto), 
+            by = c("match_id")) %>% 
+  filter(team != opp_team &
+           ((opp_score_state == "empatando" & contexto  == "empatando") | 
+              (opp_score_state == "ganando" & contexto  == "perdiendo") | 
+              (opp_score_state == "perdiendo" & contexto  == "ganando"))) %>%
+  mutate(tiempo_efectivo_juego = total_poss_time_min + opp_total_poss_time_min,
+         poss_percent = total_poss_time_min/tiempo_efectivo_juego*100)
+
+average_poss_time_state = poss_stats_state_full %>% 
+  group_by(team, contexto) %>% 
+  summarise(tiempo_efectivo_juego = sum(tiempo_efectivo_juego),
+            total_poss_time_min = sum(total_poss_time_min),
+            poss_percent = total_poss_time_min/tiempo_efectivo_juego*100) %>% 
+  arrange(team, desc(poss_percent))
+
+  
+write_csv(average_poss_time_state, "data/tiempo_posesion_contexto_licester_context_premier_15_16.csv")
