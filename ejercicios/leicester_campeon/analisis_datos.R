@@ -1,11 +1,38 @@
+#install.packages("tidyverse")
+
 library(dplyr)
 library(readr)
 library(janitor)
 library(stringr)
+library(tidyverse)
 
 games = read_csv("data/statsbomb_premier_15_16_games.csv") %>% clean_names()
 
 events = read_csv("data/statsbomb_premier_15_16_events.csv") %>% clean_names()  
+
+events = events %>%
+  mutate(zone_x = case_when(pos_x_meter < 110/6 ~ 1,
+                          pos_x_meter >= 110/6 & pos_x_meter < 110/6*2 ~ 2,
+                          pos_x_meter >= 110/6*2 & pos_x_meter < 110/6*3 ~ 3,
+                          pos_x_meter >= 110/6*3 & pos_x_meter < 110/6*4 ~ 4,
+                          pos_x_meter >= 110/6*4 & pos_x_meter < 110/6*5 ~ 5,
+                          pos_x_meter >= 110/6*5 ~ 6),
+         zone_y = case_when(pos_y_meter < 73/3 ~ 1,
+                            pos_y_meter >= 73/3 & pos_y_meter < 73/3*2 ~ 2,
+                            pos_y_meter >= 73/3*2 & pos_y_meter < 73/3*3 ~ 3),
+         zone_x_pass_end = ifelse(!is.na(pass_end_pos_x_meter),
+                                  case_when(pass_end_pos_x_meter < 110/6 ~ 1,
+                                            pass_end_pos_x_meter >= 110/6 & pass_end_pos_x_meter < 110/6*2 ~ 2,
+                                            pass_end_pos_x_meter >= 110/6*2 & pass_end_pos_x_meter < 110/6*3 ~ 3,
+                                            pass_end_pos_x_meter >= 110/6*3 & pass_end_pos_x_meter < 110/6*4 ~ 4,
+                                            pass_end_pos_x_meter >= 110/6*4 & pass_end_pos_x_meter < 110/6*5 ~ 5,
+                                            pass_end_pos_x_meter >= 110/6*5 ~ 6), 
+                                  0),
+         zone_y_pass_end = ifelse(!is.na(pass_end_pos_y_meter),
+                                  case_when(pass_end_pos_y_meter < 73/3 ~ 1,
+                                            pass_end_pos_y_meter >= 73/3 & pass_end_pos_y_meter < 73/3*2 ~ 2,
+                                            pass_end_pos_y_meter >= 73/3*2 & pass_end_pos_y_meter < 73/3*3 ~ 3),
+                                   0))
 
 TEAM = "Leicester City"
 
@@ -94,14 +121,40 @@ write_csv(xa_player_events, "data/key_passes_mahrez_15_16.csv")
 # ------------------ pases del arqueros premier
 pases_gk = events %>%
   filter(type_name == "Pass", position_name == "Goalkeeper") %>%
-  select(player_name, team_name,  pos_x_meter, pos_y_meter, pass_end_pos_x_meter, pass_end_pos_y_meter, pass_outcome_name) %>%
-  arrange(team_name)
+  mutate(pass_complete = ifelse(is.na(pass_outcome_name), TRUE, FALSE),
+         pass_complete_count = ifelse(pass_complete == TRUE, 1, 0)) %>%
+  group_by(team_name, zone_x_pass_end, zone_y_pass_end) %>%
+  summarise(cantidad = n(),
+            pass_complete = sum(pass_complete_count),
+            percent_complete_zone = round((pass_complete/cantidad)*100, 2))
+
 
 write_csv(pases_gk, "data/gk_passes_premier_15_16.csv")
   
   
 # ------------ tiros de corner premier
-
-corner = events %>%
-  filter(play_pattern_name == "From Corner")
   
+corner = inner_join(events, xGA_process, by = c("id" = "shot_key_pass_id")) %>% #3
+  filter(play_pattern_name == "From Corner", type_name == "Pass") %>%
+  mutate(across(pass_goal_assist, ~replace(.x, is.na(.x), FALSE)),
+         across(pass_shot_assist, ~replace(.x, is.na(.x), FALSE)),
+         assists_count = ifelse(pass_goal_assist == TRUE, 1, 0)) %>% 
+  group_by(team_name, zone_y_pass_end) %>%
+  summarise(frecuencia = n(),
+            xA = round(mean(xA), 2),
+            assists = sum(assists_count))
+
+write_csv(corner, "data/corners_premier_15_16.csv")
+
+# -------------- zonas de presión 
+
+# Calcular el total de presiones de presión por equipo y  zona
+pressures = events %>%
+  filter(type_name == "Pressure") %>%
+  group_by(team_name, zone_x, zone_y) %>%
+  summarise(presion = n())
+
+write_csv(pressures, "data/pressures_premier_15_16.csv")
+
+  
+
