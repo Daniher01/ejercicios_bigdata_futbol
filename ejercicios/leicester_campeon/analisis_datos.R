@@ -54,6 +54,14 @@ events = goles_stats %>%
                                             
                                             T ~ "empatando"))
 
+# minutos jugados por jugador
+minutos_jugados <- events %>%
+  filter(!is.na(player_name)) %>%
+  group_by(match_id, player_name) %>%
+  summarise(max_time = max(elapsed_time, na.rm = T)) %>%
+  group_by(player_name) %>%
+  summarise(minutos_totales = as.numeric(round(sum(max_time)/60, 1))) 
+
 TEAM = "Leicester City"
 
 # relacion xG - goles
@@ -128,13 +136,17 @@ xA_team = inner_join(events, xGA_process, by = c("id" = "shot_key_pass_id")) %>%
          across(pass_shot_assist, ~replace(.x, is.na(.x), FALSE)))
 
 xA_player = xA_team  %>% 
+  left_join(minutos_jugados, by = "player_name") %>%
+  mutate(xa_p90 = round(xA/minutos_totales*90, 2)) %>%
   group_by(player_name) %>%
-  summarise(xA = round(sum(xA), 2)) %>%
-  arrange(desc(xA))
+  summarise(xa_p90 = round(sum(xa_p90), 2)) %>%
+  arrange(desc(xa_p90))
 
 xa_player_events = xA_team %>%
+  left_join(xA_player, by = "player_name") %>%
   filter(player_name == "Riyad Mahrez") %>%
-  select(player_name, xA,  pos_x_meter, pos_y_meter, pass_end_pos_x_meter, pass_end_pos_y_meter, pass_shot_assist, pass_goal_assist)
+  select(player_name, xa_p90, xA,  pos_x_meter, pos_y_meter, pass_end_pos_x_meter, pass_end_pos_y_meter, pass_shot_assist, pass_goal_assist)
+
 
 write_csv(xa_player_events, "data/key_passes_mahrez_15_16.csv")
 
@@ -220,3 +232,77 @@ average_poss_time_state = poss_stats_state_full %>%
 
   
 write_csv(average_poss_time_state, "data/tiempo_posesion_contexto_licester_context_premier_15_16.csv")
+
+# ---------------- jugadores con jugadas que tuvieron al menos un tiro
+
+sequences_with_shots = events %>%
+  group_by(team_name, match_id, possession) %>% 
+  summarise(actions = list(type_name),
+            players = list(unique(player_name)),
+            xg = sum(shot_statsbomb_xg, na.rm = T)) %>%
+  ungroup() %>%   
+  filter(str_detect(actions, "Shot")) %>%  # opción 1
+  filter(xg > 0)   
+
+player_seqs_shot = sequences_with_shots %>% 
+  select(players) %>% 
+  unlist() %>% 
+  table() %>% 
+  as_data_frame() %>% 
+  rename("player_name" = ".", "n_seqs_shot" = "n") %>% 
+  arrange(desc(n_seqs_shot))
+
+player_team = events %>%
+  group_by(player_name , player_id) %>%
+  summarise(team = unique(team_name))
+
+player_team_stats = player_seqs_shot %>%
+  left_join(player_team, by = "player_name") %>%
+  filter(team == TEAM) %>%
+  arrange(desc(n_seqs_shot))
+
+write_csv(player_team_stats, "data/sequencia_jugadas_tiros_licester_premier_15_16.csv")
+
+# ---------------- jugador con mas pases progresivos
+
+pases_progresivos <- events %>%
+  mutate(progressive_pass = ifelse(type_name == "Pass" & 
+                                     (110 - pass_end_pos_x_meter)/(110 - pos_x_meter) <= 0.75, "Yes", "No"),
+         complete_prog_pass = ifelse(is.na(pass_outcome_name), "Yes", "No")) %>%
+  filter(progressive_pass == "Yes") %>%
+  group_by(player_name) %>%
+  summarise(n = n(),
+            n_complete = sum(ifelse(complete_prog_pass == "Yes", 1, 0)),
+            n_incomplete = n - n_complete,
+            accuracy = round(n_complete/n*100, 1)) %>%
+  arrange(desc(accuracy)) %>%
+  filter(n >= 50)
+
+pases_progresivos_team = pases_progresivos %>%
+  left_join(player_team, by = "player_name") %>%
+  filter(team == TEAM)
+
+pases_progresivos_player = events %>%
+  mutate(progressive_pass = ifelse(type_name == "Pass" & 
+                                     (110 - pass_end_pos_x_meter)/(110 - pos_x_meter)  <= 0.75, 
+                                   "Yes", "No"),
+         complete_prog_pass = ifelse(is.na(pass_outcome_name), "Sí", "No")) %>%
+  filter(progressive_pass == "Yes" & player_name == "Shinji Okazaki")
+
+write_csv(pases_progresivos_player, "data/pases_progresivos_player_licester_premier_15_16.csv")
+
+# ------------ jugador con más xG y de quien recibio asistencias
+
+shot_map_team = events %>%
+  filter(type_name == "Shot", shot_outcome_name != "Blocked", team_name == TEAM) %>%
+  group_by(player_name) %>%
+  summarise(xG = sum(shot_statsbomb_xg)) %>%
+  arrange(desc(xG))
+
+shot_map_player = events %>%
+  filter(type_name == "Shot", shot_outcome_name != "Blocked", player_name == "Jamie Vardy") %>%
+  select(player_name, shot_outcome_name, shot_technique_name, shot_body_part_name, shot_statsbomb_xg, pos_x_meter, pos_y_meter)
+
+write_csv(shot_map_player, "data/shotmap_vardy_licester_premier_15_16.csv")
+  
+

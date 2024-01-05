@@ -32,6 +32,7 @@ premier_events_cleaned <- premier_events_cleaned %>%
          carry_end_pos_y_meter = carry.end_location.y/max_y_source*max_y_final,
          carry_end_pos_y_meter = 73 - carry_end_pos_y_meter)
 
+
 url = "images/escudos_premier/"
 
 premier_games = premier_games %>% mutate(logo_team_home = case_when(
