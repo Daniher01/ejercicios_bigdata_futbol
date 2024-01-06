@@ -209,12 +209,13 @@ shotmap <- get_half_pitch(gp = ggplot(data = shotmap_team),pitch_fill = "#252525
   scale_shape_manual(values = c(23, 22, 21)) +
   # capa de leyendas y textos
   theme(legend.position = "bottom",
-        legend.margin = margin( l = 2, unit = "cm"),
+        legend.margin = margin(b = 0.1, l = 1, unit = "cm"),
         legend.box = "vertical",
-        legend.justification = "center",
+        legend.box.just = "left",
         plot.background = element_rect(fill = "#252525", colour = "transparent"),
         text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 30),
-        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm")) +
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0))) +
   # capa que permite sobreescribir la parte estetica a la leyenda de los datos
   guides(fill = guide_legend(override.aes = list(shape = 21, size = 8, stroke = 1, alpha = 0.7)),
          shape = guide_legend(override.aes = list(size = 8, fill = COL_TEXT_LINES))) +
