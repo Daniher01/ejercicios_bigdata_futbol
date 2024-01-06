@@ -69,7 +69,7 @@ TEAM = "Leicester City"
 xG = events %>%
   filter(!is.na(shot_statsbomb_xg)) %>%
   group_by(team_name) %>%
-  summarise(xG = round(sum(shot_statsbomb_xg), 2))
+  summarise(xg = round(sum(shot_statsbomb_xg), 2))
 
 goles = events %>%
   filter(shot_outcome_name == "Goal") %>%
@@ -116,7 +116,9 @@ team_data = team_data %>%
   left_join(xG, by = c("team" = "team_name")) %>%
   left_join(xA, by = c("team" = "team_name")) %>%
   left_join(goles_en_contra, by = c("team" = "team_name")) %>%
-  left_join(xg_contra, by = c("team" = "team_name"))
+  left_join(xg_contra, by = c("team" = "team_name")) %>%
+  mutate(ratio_of = round(goles/xg, 2),
+         ratio_def = round(goles_contra/xg_contra, 2))
 
 
 write_csv(team_data, "data/teams_data_premier_15_16.csv")
