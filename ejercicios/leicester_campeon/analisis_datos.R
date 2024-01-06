@@ -125,9 +125,10 @@ write_csv(team_data, "data/teams_data_premier_15_16.csv")
 
 # ------------- shotmap equipo
 shots = events %>%
-  filter(team_name == TEAM, type_name == "Shot") %>%
-  select(team_name, player_name, shot_statsbomb_xg, play_pattern_name, shot_outcome_name, shot_body_part_name, pos_x_meter, pos_y_meter) %>%
-  mutate(shot_statsbomb_xg = round(shot_statsbomb_xg, 2))
+  filter(team_name == TEAM, type_name == "Shot", shot_outcome_name != "Blocked") %>%
+  select(team_name, player_name, shot_statsbomb_xg, play_pattern_name, shot_outcome_name, shot_body_part_name, pos_x_meter, pos_y_meter, zone_x, zone_y) %>%
+  mutate(shot_statsbomb_xg = round(shot_statsbomb_xg, 2),
+         shot_outcome_name = ifelse(shot_outcome_name == "Wayward" | shot_outcome_name == "Saved Off Target", "Other", shot_outcome_name))
 
 write_csv(shots, "data/shots_leicester.csv")
 

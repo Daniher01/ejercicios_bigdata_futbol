@@ -17,6 +17,8 @@ library(showtext)
 font_add_google('Fira Sans', 'firasans')
 showtext_auto()
 
+source("ejercicios/leicester_campeon/graficos_cancha.R")
+
 # -------------- relacion xG - Goles
 
 team_stats = read_csv('data/teams_data_premier_15_16.csv') %>% clean_names()
@@ -186,3 +188,47 @@ ratio_xg_goles = ggplot(data = team_stats,
 ratio_xg_goles
 
 ggsave("ejercicios/leicester_campeon/graficos/ratio_xg_goles_premier_15_16.png", width = 12, height = 10)
+
+# -------------- mapa de tiros del equipo
+
+shotmap_team = read_csv('data/shots_leicester.csv') %>% clean_names()
+tiros_totales = nrow(shotmap_team)
+goles = nrow(shotmap_team %>% filter(shot_outcome_name == "Goal"))
+precision = round(goles/tiros_totales*100)
+
+COL_TEXT_LINES = "grey90"
+
+shotmap <- get_half_pitch(gp = ggplot(data = shotmap_team),pitch_fill = "#252525", 
+                          pitch_col = "grey90", background_fill = "#252525",  margin = 0.1) +
+  # capa de variables
+  geom_point(aes(x = pos_x_meter, y = pos_y_meter, 
+                 size = shot_statsbomb_xg, fill = shot_outcome_name, shape = shot_body_part_name), alpha = 0.8) +
+  # capa de estética
+  scale_size_continuous(range = c(3, 6), breaks = seq(0, 1, 0.2)) +
+  scale_fill_manual(values = c("blue", "#67a9cf", "#67a9cf", "#67a9cf", "#67a9cf")) +
+  scale_shape_manual(values = c(23, 22, 21)) +
+  # capa de leyendas y textos
+  theme(legend.position = "bottom",
+        legend.margin = margin( l = 2, unit = "cm"),
+        legend.box = "vertical",
+        legend.justification = "center",
+        plot.background = element_rect(fill = "#252525", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 30),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm")) +
+  # capa que permite sobreescribir la parte estetica a la leyenda de los datos
+  guides(fill = guide_legend(override.aes = list(shape = 21, size = 8, stroke = 1, alpha = 0.7)),
+         shape = guide_legend(override.aes = list(size = 8, fill = COL_TEXT_LINES))) +
+  # permite personalizar la leyenda y los textos
+  labs(fill = "Resultado del tiro:",
+       size = "xG:",
+       shape = "Parte del cuerpo:",
+       title = "Shotmap Leicester Premier 2015/2016",
+       subtitle = paste0(tiros_totales, " Tiros (", precision, "% de conversión de goles)"))
+
+shotmap <- ggdraw() +
+  draw_plot(shotmap) +
+  draw_image("images/statsbomb.jpg",  x = -0.35, y = -0.24, scale = 0.15)
+
+shotmap
+
+ggsave('ejercicios/leicester_campeon/graficos/shotmap_leicester.png',  width = 12, height = 10)
