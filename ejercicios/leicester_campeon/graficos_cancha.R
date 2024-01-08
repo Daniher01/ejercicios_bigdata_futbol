@@ -15,6 +15,8 @@ dims_list <- list(
   origin_y = 0
 )
 
+
+
 # función para dibujar cancha completa
 get_pitch <- function(gp, dims = dims_list, pitch_fill = "white", pitch_col = "grey70", background_fill = pitch_fill, margin = 0){
   
@@ -23,6 +25,8 @@ get_pitch <- function(gp, dims = dims_list, pitch_fill = "white", pitch_col = "g
                             xend = dims$length,
                             y = dims$origin_y,
                             yend = dims$width)
+
+  
   
   # genera las medidas de las areas grandes y areas chicas de cada lado
   x_start_areas <- c(dims$origin_x, dims$origin_x, dims$length - dims$penalty_box_length, dims$length - dims$six_yard_box_length)
@@ -81,6 +85,7 @@ get_pitch <- function(gp, dims = dims_list, pitch_fill = "white", pitch_col = "g
                  start = 0*pi/180, end = 90*pi/180), col = pitch_col) +
     geom_arc(aes(x0 = dims$origin_x, y0 = dims$width, r = 1, 
                  start = 90*pi/180, end = 180*pi/180), col = pitch_col)
+    
 }
 
 # función para dibujar media cancha
@@ -132,4 +137,30 @@ get_half_pitch <- function(gp, dims = dims_list, pitch_fill = "white", pitch_col
     
     coord_flip() +
     scale_y_reverse()
+}
+
+# funcion para segmentar las zonas
+gird_zones <- function(){
+  # Número de zonas en los ejes x e y
+  num_zones_x <- 6
+  num_zones_y <- 3
+  
+  # Coordenadas de las zonas
+  x_coords <- seq(0, 110, length.out = num_zones_x + 1)
+  y_coords <- seq(0, 73, length.out = num_zones_y + 1)
+  
+  # Crear un data frame para almacenar las zonas
+  grid_zones <- data.frame()
+  
+  # Llenar el data frame con las zonas
+  for (i in 1:num_zones_x) {
+    for (j in 1:num_zones_y) {
+      grid_zones <- rbind(grid_zones, data.frame(x1 = x_coords[i],
+                                                 x2 = x_coords[i + 1],
+                                                 y1 = y_coords[j],
+                                                 y2 = y_coords[j + 1],
+                                                 zone = paste(i, j, sep = "-")))
+    }
+  }
+  return(grid_zones)
 }

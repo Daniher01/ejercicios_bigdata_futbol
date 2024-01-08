@@ -233,3 +233,17 @@ shotmap <- ggdraw() +
 shotmap
 
 ggsave('ejercicios/leicester_campeon/graficos/shotmap_leicester.png',  width = 12, height = 10)
+
+# ----------------- zona de pases del arquero premier ----------------------------------
+
+pass_zone_gk = read_csv('data/gk_passes_premier_15_16.csv') %>% clean_names() %>%
+  mutate(zone = paste0(zone_x_pass_end,'-',zone_y_pass_end)) %>%
+  left_join(gird_zones(), by = c("zone" = "zone"))
+
+
+
+d <- get_pitch(gp = ggplot(data = pass_zone_gk)) +
+  geom_rect(aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2, fill = cantidad), col = "grey90", alpha = 0.7) +
+  scale_fill_gradient2(high = "red", low = "blue")
+
+d
