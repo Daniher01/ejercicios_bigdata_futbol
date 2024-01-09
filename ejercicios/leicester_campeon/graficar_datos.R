@@ -241,9 +241,54 @@ pass_zone_gk = read_csv('data/gk_passes_premier_15_16.csv') %>% clean_names() %>
   left_join(gird_zones(), by = c("zone" = "zone"))
 
 
-
-d <- get_pitch(gp = ggplot(data = pass_zone_gk)) +
-  geom_rect(aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2, fill = cantidad), col = "grey90", alpha = 0.7) +
-  scale_fill_gradient2(high = "red", low = "blue")
+d <- get_pitch(gp = ggplot(data = pass_zone_gk), margin = 0.6, pitch_col = "grey50", pitch_fill = "white") +
+  geom_rect(aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2, fill = percent_pass_per_zone), col = "grey50", alpha = 0.7) +
+  geom_text(aes(x = (x1 + x2) / 2, y = (y1 + y2) / 2, label = percent_pass_per_zone), size = 10, colour = "black") +
+  scale_fill_gradient2(high = "red", low = "blue") +
+  facet_wrap(~team_name, ncol = 4) +
+  theme(legend.position = "bottom",
+        legend.margin = margin(t = 0.4, unit = "cm"),
+        plot.background = element_rect(fill = "white", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = "black", size = 30),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0)),
+        plot.title = element_text(margin = margin(b = 0.5)), # Añade margen al título
+        plot.subtitle = element_text(margin = margin(b = 2))) +
+  labs(fill = "% de pases en cada zona",
+       title = "Porcentaje (%) de pases de porteros a cada zona (por equipo) - Premier 2015/2016",
+       subtitle = "")
 
 d
+
+ggsave('ejercicios/leicester_campeon/graficos/zona_pases_gk_premier.png',  width = 15, height = 12)
+
+# ---------------- zona de pases del arquero del leicester
+pass_zone_gk_team = read_csv('data/gk_passes_leicester_15_16.csv') %>% clean_names() %>%
+  mutate(preciso = ifelse(is.na(pass_outcome_name), 'Si', 'No'))
+
+cant_success = sum(ifelse(pass_zone_gk_team$preciso == 'Si', 1, 0))
+
+pgt = get_pitch(gp = ggplot(data = pass_zone_gk_team), margin = 0.6, pitch_fill = "#252525", 
+                pitch_col = "grey90", background_fill = "#252525") +
+  geom_rect(data = gird_zones() ,aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2,), fill = NA, col = "grey50", alpha = 0.7) +
+  geom_point(aes(x = pass_end_pos_x_meter, y = pass_end_pos_y_meter, col = preciso), alpha = 0.8) +
+  scale_color_brewer(palette = "Set1") +
+  scale_shape_manual(values = c(15, 16)) +
+  # capa de leyendas y textos
+  theme(legend.position = "bottom",
+        legend.margin = margin(b = 0.1, l = 1, unit = "cm"),
+        legend.box = "vertical",
+        legend.box.just = "left",
+        plot.background = element_rect(fill = "#252525", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = "grey90", size = 40),
+        plot.margin = margin(1, 1, 1, 1, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0))) +
+  # capa que permite sobreescribir la parte estetica a la leyenda de los datos
+  guides(col = guide_legend(override.aes = list(size = 8))) +
+  labs(col = "¿Pase preciso?",
+       title = "Pases de Kasper Schmeichel (GK) - Leicester",
+       subtitle = paste0(nrow(pass_zone_gk_team), " total de pases (", round(cant_success/nrow(pass_zone_gk_team)*100, 2), "% de precisión)"))
+
+pgt
+
+ggsave('ejercicios/leicester_campeon/graficos/zona_pases_gk_leicester.png',  width = 18, height = 12)
