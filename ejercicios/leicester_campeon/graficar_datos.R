@@ -24,15 +24,15 @@ source("ejercicios/leicester_campeon/graficos_cancha.R")
 team_stats = read_csv('data/teams_data_premier_15_16.csv') %>% clean_names()
 
 # definir constantes
-MIN_AXIS = round(min(team_stats$xg, team_stats$goles), 2)
-MAX_AXIS = round(max(team_stats$xg, team_stats$goles), 2)
-MEAN_XG = round(mean(team_stats$xg), 2)
+MIN_AXIS = round(min(team_stats$x_g, team_stats$goles), 2)
+MAX_AXIS = round(max(team_stats$x_g, team_stats$goles), 2)
+MEAN_XG = round(mean(team_stats$x_g), 2)
 MEAN_GOLES = round(mean(team_stats$goles), 2)
 DELTA = 1
 COL_TEXT_LINES = "grey90"
 
 xg_goles = ggplot(data = team_stats, 
-            aes(x = xg, y = goles)) +
+            aes(x = x_g, y = goles)) +
   
   # linea promedio 
   geom_abline(intercept = 0, slope = 1, linetype = 2, 
@@ -54,7 +54,7 @@ xg_goles = ggplot(data = team_stats,
   labs(x = "\nxG durante todo el torneo", y = "Goles durante todo el torneo\n", 
        title = "Rendimiento Ofensivo xG - Goles ",
        subtitle = "Permier League 2015/2016\n",
-       caption = "@dhernandez_dev  |  Data: statsbomb") +
+       caption = "Twitter: @dhernandez_dev") +
   theme(legend.position = "none",
         panel.background = element_rect(fill = "#252525", colour = COL_TEXT_LINES),
         plot.background = element_rect(fill = "#252525", colour = "transparent"),
@@ -67,6 +67,10 @@ xg_goles = ggplot(data = team_stats,
         plot.margin = margin(0.7, 1, 0.5, 0.5, "cm")) +
   # agregar imagenes
   geom_image(aes(image = logo), size = 0.05, by = "width", asp = 1.3)
+
+xg_goles <- ggdraw() +
+  draw_plot(xg_goles) +
+  draw_image("images/statsbomb.jpg",  x = -0.34, y = -0.45, scale = 0.15)
 
 xg_goles
 
@@ -105,7 +109,7 @@ xg_goles_contra = ggplot(data = team_stats,
   labs(x = "\nxG en contra durante todo el torneo", y = "Goles en contra durante todo el torneo\n", 
        title = "Rendimiento Defensivo xG en contra - Goles en contra ",
        subtitle = "Permier League 2015/2016\n",
-       caption = "@dhernandez_dev  |  Data: statsbomb") +
+       caption = "Twitter: @dhernandez_dev") +
   theme(legend.position = "none",
         panel.background = element_rect(fill = "#252525", colour = COL_TEXT_LINES),
         plot.background = element_rect(fill = "#252525", colour = "transparent"),
@@ -118,6 +122,10 @@ xg_goles_contra = ggplot(data = team_stats,
         plot.margin = margin(0.7, 1, 0.5, 0.5, "cm")) +
   # agregar imagenes
   geom_image(aes(image = logo), size = 0.05, by = "width", asp = 1.3)
+
+xg_goles_contra <- ggdraw() +
+  draw_plot(xg_goles_contra) +
+  draw_image("images/statsbomb.jpg",  x = -0.34, y = -0.45, scale = 0.15)
 
 xg_goles_contra
 
@@ -171,7 +179,7 @@ ratio_xg_goles = ggplot(data = team_stats,
   labs(x = "\nRatio xG - Goles", y = "Ratio xG en contra - Goles en contra\n", 
        title = "Rendimiento en base el Ratio xG - Goles (a favor y en contra) ",
        subtitle = "Permier League 2015/2016\n",
-       caption = "Ratio: Comparacion entre 2 grupos, en este caso xG y Goles tanto a favor como en contra \n@dhernandez_dev  |  Data: statsbomb") +
+       caption = "Ratio: Comparacion entre 2 grupos, en este caso xG y Goles tanto a favor como en contra \nTwitter: @dhernandez_dev") +
   theme(legend.position = "none",
         panel.background = element_rect(fill = "#252525", colour = COL_TEXT_LINES),
         plot.background = element_rect(fill = "#252525", colour = "transparent"),
@@ -184,6 +192,10 @@ ratio_xg_goles = ggplot(data = team_stats,
         plot.margin = margin(0.7, 1, 0.5, 0.5, "cm")) +
   # agregar imagenes
   geom_image(aes(image = logo), size = 0.05, by = "width", asp = 1.3)
+
+ratio_xg_goles <- ggdraw() +
+  draw_plot(ratio_xg_goles) +
+  draw_image("images/statsbomb.jpg",  x = -0.34, y = -0.45, scale = 0.15)
 
 ratio_xg_goles
 
@@ -251,12 +263,16 @@ d <- get_pitch(gp = ggplot(data = pass_zone_gk), margin = 0.6, pitch_col = "grey
         plot.background = element_rect(fill = "white", colour = "transparent"),
         text = element_text(family = 'firasans', colour = "black", size = 30),
         plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
-        plot.caption = element_text(margin = margin(5, 0, 0, 0)),
-        plot.title = element_text(margin = margin(b = 0.5)), # Añade margen al título
-        plot.subtitle = element_text(margin = margin(b = 2))) +
+        plot.caption = element_text(margin = margin(2, 0, 0, 0)),
+        plot.title = element_text(margin = margin(b = 0.2, unit = "cm")),
+        plot.subtitle = element_text(margin = margin(b = 1, unit = "cm"))) +
   labs(fill = "% de pases en cada zona",
-       title = "Porcentaje (%) de pases de porteros a cada zona (por equipo) - Premier 2015/2016",
-       subtitle = "")
+       title = "Porcentaje (%) de pases de porteros a cada zona (por equipo) ",
+       subtitle = "Premier 2015/2016")
+
+d <- ggdraw() +
+  draw_plot(d) +
+  draw_image("images/statsbomb.jpg",  x = -0.34, y = -0.45, scale = 0.15)
 
 d
 
@@ -289,6 +305,45 @@ pgt = get_pitch(gp = ggplot(data = pass_zone_gk_team), margin = 0.6, pitch_fill 
        title = "Pases de Kasper Schmeichel (GK) - Leicester",
        subtitle = paste0(nrow(pass_zone_gk_team), " total de pases (", round(cant_success/nrow(pass_zone_gk_team)*100, 2), "% de precisión)"))
 
+pgt <- ggdraw() +
+  draw_plot(pgt) +
+  draw_image("images/statsbomb.jpg",  x = -0.34, y = -0.45, scale = 0.15)
+
 pgt
 
 ggsave('ejercicios/leicester_campeon/graficos/zona_pases_gk_leicester.png',  width = 18, height = 12)
+
+# ---------------------- zona de tiros de corner premier
+zonas_corner = read_csv('data/corners_premier_15_16.csv') %>% clean_names() %>%
+  left_join(gird_zones_hp(), by = c("zone_y_pass_end" = "zone")) %>%
+  group_by(team_name) %>%
+  mutate(total = sum(frecuencia)) %>%
+  group_by(team_name, zone_y_pass_end) %>%
+  mutate(percent_zone = round(frecuencia/total*100, 2))
+
+corner <- get_half_pitch(gp = ggplot(data = zonas_corner)) +
+  geom_rect(aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2, fill = x_a),  col = "grey50", alpha = 0.7) +
+  geom_text(aes(x = (x1 + x2) / 2, y = (y1 + y2) / 2, label = paste0(percent_zone, "%")), size = 10, colour = "black") +
+  geom_text(aes(x = ((x1 + x2) / 2) - 12, y = (y1 + y2) / 2, label = paste0(assists)), size = 8, colour = "black") +
+  scale_fill_gradient2(high = "red", low = "blue") +
+  facet_wrap(~team_name, ncol = 4) +
+  theme(legend.position = "bottom",
+        legend.margin = margin(t = 0.4, unit = "cm"),
+        plot.background = element_rect(fill = "white", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = "black", size = 30),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0)),
+        plot.title = element_text(margin = margin(b = 0.2, unit = "cm")),
+        plot.subtitle = element_text(margin = margin(b = 1, unit = "cm"))) +
+  labs(fill = "xA",
+       title = "Frecuencia de centros desde tiro de esquina",
+       subtitle = "Premier 2015/2016")
+
+corner <- ggdraw() +
+  draw_plot(corner) +
+  draw_image("images/statsbomb.jpg",  x = -0.34, y = -0.45, scale = 0.15)
+
+corner
+
+ggsave('ejercicios/leicester_campeon/graficos/zona_corner_premier_15_16.png', width = 12, height = 10)
+

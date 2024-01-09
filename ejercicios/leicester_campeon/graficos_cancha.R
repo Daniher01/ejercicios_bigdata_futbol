@@ -164,3 +164,26 @@ gird_zones <- function(){
   }
   return(grid_zones)
 }
+
+# funcion para segmentar las zonas
+gird_zones_hp <- function(){
+  # Número de zonas en los ejes x e y
+  num_zones_y <- 3
+  
+  # Coordenadas de las zonas
+  y_coords <- seq(0, 73, length.out = num_zones_y + 1)
+  
+  # Crear un data frame para almacenar las zonas
+  gird_zones_hp <- data.frame()
+  
+  # Llenar el data frame con las zonas
+
+    for (j in 1:num_zones_y) {
+      gird_zones_hp <- rbind(gird_zones_hp, data.frame(x1 = 110/2,
+                                                 x2 = 110,
+                                                 y1 = y_coords[j],
+                                                 y2 = y_coords[j + 1],
+                                                 zone = j))
+    }
+  return(gird_zones_hp)
+}
