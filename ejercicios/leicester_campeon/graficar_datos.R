@@ -292,12 +292,10 @@ pgt = get_pitch(gp = ggplot(data = pass_zone_gk_team), margin = 0.6, pitch_fill 
   scale_shape_manual(values = c(15, 16)) +
   # capa de leyendas y textos
   theme(legend.position = "bottom",
-        legend.margin = margin(b = 0.1, l = 1, unit = "cm"),
-        legend.box = "vertical",
-        legend.box.just = "left",
+        legend.margin = margin(t = 0.4, unit = "cm"),
         plot.background = element_rect(fill = "#252525", colour = "transparent"),
-        text = element_text(family = 'firasans', colour = "grey90", size = 40),
-        plot.margin = margin(1, 1, 1, 1, "cm"),
+        text = element_text(family = 'firasans', colour = "grey90", size = 30),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
         plot.caption = element_text(margin = margin(5, 0, 0, 0))) +
   # capa que permite sobreescribir la parte estetica a la leyenda de los datos
   guides(col = guide_legend(override.aes = list(size = 8))) +
@@ -346,4 +344,109 @@ corner <- ggdraw() +
 corner
 
 ggsave('ejercicios/leicester_campeon/graficos/zona_corner_premier_15_16.png', width = 12, height = 10)
+
+# ------------- zonas de presión por equipo ------------------------
+zonas_presion = read_csv('data/pressures_premier_15_16.csv') %>% clean_names() %>%
+  group_by(zone_x, zone_y) %>%
+  mutate(avg_team = round(mean(presion)),
+         value_compared_avg = presion-avg_team,
+         zone = paste0(zone_x,'-',zone_y)) %>%
+  left_join(gird_zones(), by = c("zone" = "zone"))
+
+presion <- get_pitch(gp = ggplot(data = zonas_presion)) +
+  geom_rect(aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2,fill = value_compared_avg), col = "grey50", alpha = 0.7) +
+  scale_fill_gradient2(high = "red", low = "blue") +
+  facet_wrap(~team_name, ncol = 4) +
+  theme(legend.position = "bottom",
+        legend.margin = margin(t = 0.4, unit = "cm"),
+        plot.background = element_rect(fill = "white", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = "black", size = 30),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0)),
+        plot.title = element_text(margin = margin(b = 0.2, unit = "cm")),
+        plot.subtitle = element_text(margin = margin(b = 1, unit = "cm"))) +
+  labs(fill = "Frecuencia en las zonas de presión",
+       title = "Presiones más altas/más bajas que el promedio de los equipos en cada zona",
+       subtitle = "Premier 2015/2016")
+
+presion <- ggdraw() +
+  draw_plot(presion) +
+  draw_image("images/statsbomb.jpg",  x = 0.34, y = 0.45, scale = 0.15)
+
+presion
+
+ggsave('ejercicios/leicester_campeon/graficos/zona_presion_premier_15_16.png', width = 12, height = 10)
+
+# ---------------- zonas de presion segun el contexto ------------------------
+zonas_presion_context = read_csv('data/pressures_licester_context_premier_15_16.csv') %>% clean_names()
+
+gird_zone_x = gird_zones() %>%
+  mutate(zone_x = as.double(str_remove( zone, "-.*")))
+
+zonas_presion_context = left_join(zonas_presion_context, gird_zone_x, by = "zone_x") %>%
+  group_by(zone_x) %>%
+  mutate(agv_zone = round(mean(presion)),
+         avg_context = presion-agv_zone)
+
+zpc <- get_pitch(gp = ggplot(data = zonas_presion_context)) +
+  geom_rect(aes(xmin = x1, xmax = x2, ymin = y1, ymax = y2, fill = avg_context), col = "grey50", alpha = 0.7) +
+  scale_fill_gradient2(high = "red", low = "blue") +
+  facet_wrap(~contexto, ncol = 3) +
+  theme(legend.position = "bottom",
+        legend.margin = margin(t = 0.4, unit = "cm"),
+        plot.background = element_rect(fill = "white", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = "black", size = 40),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0)),
+        plot.title = element_text(margin = margin(b = 0.2, unit = "cm")),
+        plot.subtitle = element_text(margin = margin(b = 1, unit = "cm"))) +
+  labs(fill = "Frecuencia en las zonas de presión",
+       title = "Presiones más altas/más bajas del Leicester según el contexto del partido en cada zona",
+       subtitle = "Premier 2015/2016") 
+  
+  
+  zpc <- ggdraw() +
+  draw_plot(zpc) +
+  draw_image("images/statsbomb.jpg",  x = 0.34, y = 0.45, scale = 0.15)
+
+zpc
+
+ggsave('ejercicios/leicester_campeon/graficos/zona_presion_context_leicester.png', width = 18, height = 8)
+  
+# ------------------------ tiempo de posesión segun contexto ----------------
+posesion_context = read_csv('data/tiempo_posesion_contexto_licester_context_premier_15_16.csv') %>% clean_names()
+COL_TEXT_LINES = "grey90"
+
+# Gráfico de barras agrupadas
+posesion <- ggplot(data = posesion_context, aes(x = fct_reorder(team, poss_percent), y = poss_percent, fill = contexto)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9), col = "transparent" , alpha = 0.7, width = 0.8) + 
+  coord_flip() +
+  theme_bw() +
+  scale_fill_brewer(palette = "Set1") +
+  # textos
+  labs(x = "\nEquipos", y = "Porcentaje (%) de posesión según contexto\n",
+       title = "Porcentajes de posesión de los equipos según contexto (Ganando, Perdiendo, Empatando)",
+       subtitle = "Premier 2015/2016\n",
+       caption = "@dhernandez_dev  |  Data: understat") +
+  # escalar el grafico  
+  scale_y_continuous(breaks = seq(0, 70, 10), labels = seq(0, 70, 10), limits = c(0, 70)) +
+  # tema
+  theme(panel.background = element_rect(fill = "#252525", colour = COL_TEXT_LINES),
+        plot.background = element_rect(fill = "#252525", colour = "transparent"),
+        panel.grid.minor.x = element_blank(),
+        panel.grid = element_line(colour = "grey50", size = 0.1),
+        axis.ticks = element_line(colour = COL_TEXT_LINES),
+        axis.text = element_text(colour = COL_TEXT_LINES),
+        title = element_text(colour = COL_TEXT_LINES),
+        text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 45),
+        plot.margin = margin(1, 1, 1, 0.5, "cm"),
+        legend.position = "bottom",
+        legend.text = element_text(size = 45),
+        legend.title = element_text(size = 55),
+        legend.background = element_rect(fill = "#252525"))
+
+posesion
+
+ggsave('ejercicios/leicester_campeon/graficos/posesion_context_premier.png', width = 15, height = 18)
+
 
