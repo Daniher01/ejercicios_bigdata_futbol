@@ -207,6 +207,7 @@ shotmap_team = read_csv('data/shots_leicester.csv') %>% clean_names()
 tiros_totales = nrow(shotmap_team)
 goles = nrow(shotmap_team %>% filter(shot_outcome_name == "Goal"))
 precision = round(goles/tiros_totales*100)
+xg_avg = round(sum(shotmap_team$shot_statsbomb_xg), 2)
 
 COL_TEXT_LINES = "grey90"
 
@@ -219,6 +220,13 @@ shotmap <- get_half_pitch(gp = ggplot(data = shotmap_team),pitch_fill = "#252525
   scale_size_continuous(range = c(3, 6), breaks = seq(0, 1, 0.2)) +
   scale_fill_manual(values = c("blue", "#67a9cf", "#67a9cf", "#67a9cf", "#67a9cf")) +
   scale_shape_manual(values = c(23, 22, 21)) +
+  # textos complementarios
+  annotate("text", x = 70 , y = 70, size = 45, alpha = 0.4,
+           label = paste0("xG: ",xg_avg), col = "grey90", hjust = 0,
+           family ='firasans') +
+  annotate("text", x = 70 , y = 20, size = 45, alpha = 0.4,
+           label = paste0("Goles: ",goles), col = "grey90", hjust = 0,
+           family ='firasans') +
   # capa de leyendas y textos
   theme(legend.position = "bottom",
         legend.margin = margin(b = 0.1, l = 1, unit = "cm"),
@@ -449,4 +457,55 @@ posesion
 
 ggsave('ejercicios/leicester_campeon/graficos/posesion_context_premier.png', width = 15, height = 18)
 
+# ------------------- mapa de tiros jugador con más xG --------------------
+shotmap_player = read_csv('data/shotmap_vardy_licester_premier_15_16.csv') %>% clean_names()
+tiros_totales = nrow(shotmap_player)
+goles = nrow(shotmap_player %>% filter(shot_outcome_name == "Goal"))
+precision = round(goles/tiros_totales*100)
+xg_avg = round(sum(shotmap_player$shot_statsbomb_xg), 2)
+
+COL_TEXT_LINES = "grey90"
+
+shotmap <- get_half_pitch(gp = ggplot(data = shotmap_player),pitch_fill = "#252525", 
+                          pitch_col = "grey90", background_fill = "#252525",  margin = 0.1) +
+  # capa de variables
+  geom_point(aes(x = pos_x_meter, y = pos_y_meter, 
+                 size = shot_statsbomb_xg, fill = shot_outcome_name, shape = shot_body_part_name), alpha = 0.8) +
+  # textos complementarios
+  annotate("text", x = 70 , y = 70, size = 45, alpha = 0.4,
+           label = paste0("xG: ",xg_avg), col = "grey90", hjust = 0,
+           family ='firasans') +
+  annotate("text", x = 70 , y = 20, size = 45, alpha = 0.4,
+           label = paste0("Goles: ",goles), col = "grey90", hjust = 0,
+           family ='firasans') +
+  # capa de estética
+  scale_size_continuous(range = c(3, 6), breaks = seq(0, 1, 0.25)) +
+  scale_fill_brewer(palette = "Set1") +
+  scale_shape_manual(values = c(23, 22, 21)) +
+  # capa de leyendas y textos
+  theme(legend.position = "bottom",
+        legend.margin = margin(b = 0.1, l = 1, unit = "cm"),
+        legend.box = "vertical",
+        legend.box.just = "left",
+        plot.background = element_rect(fill = "#252525", colour = "transparent"),
+        text = element_text(family = 'firasans', colour = COL_TEXT_LINES, size = 30),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        plot.caption = element_text(margin = margin(5, 0, 0, 0))) +
+  # capa que permite sobreescribir la parte estetica a la leyenda de los datos
+  guides(fill = guide_legend(override.aes = list(shape = 21, size = 8, stroke = 1, alpha = 0.7)),
+         shape = guide_legend(override.aes = list(size = 8, fill = COL_TEXT_LINES))) +
+  # permite personalizar la leyenda y los textos
+  labs(fill = "Resultado del tiro:",
+       size = "xG:",
+       shape = "Parte del cuerpo:",
+       title = "Shotmap Jamie Vardy Premier 2015/2016",
+       subtitle = paste0(tiros_totales, " Tiros (", precision, "% de conversión de goles) "))
+
+shotmap <- ggdraw() +
+  draw_plot(shotmap) +
+  draw_image("images/statsbomb.jpg",  x = -0.35, y = -0.24, scale = 0.15)
+
+shotmap
+
+ggsave('ejercicios/leicester_campeon/graficos/shotmap_vardy.png',  width = 12, height = 10)
 
