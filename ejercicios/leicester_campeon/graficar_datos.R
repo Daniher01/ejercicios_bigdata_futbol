@@ -509,3 +509,4 @@ shotmap
 
 ggsave('ejercicios/leicester_campeon/graficos/shotmap_vardy.png',  width = 12, height = 10)
 
+# ------------------------- pases clave player xA -----------------------------
