@@ -69,5 +69,10 @@ library(dplyr)
 modelo_juego %>% group_by(posicion) %>% summarise(valor = sum(valor))
 
 
-# library(readxl)
-# events_premier = read.csv('data/statsbomb_premier_15_16_events.csv')
+library(readxl)
+library(janitor)
+events_premier = read.csv('data/statsbomb_premier_15_16_events.csv') %>% clean_names()
+
+
+events_premier %>% group_by(player_name, position_name) %>%
+  summarise(n = n())
