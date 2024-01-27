@@ -162,7 +162,14 @@ pases_gk = events %>%
   summarise(cantidad = n(),
             pass_complete = sum(pass_complete_count),
             percent_complete_zone = round((pass_complete/cantidad)*100, 2))
-
+  
+pases_gk = pases_gk %>%
+  group_by(team_name) %>%
+  mutate(cantidad_per_team = sum(cantidad),
+            percent_pass_per_zone = round((cantidad/cantidad_per_team)*100, 2)) %>%
+  ungroup() %>%
+  select(team_name, zone_x_pass_end, zone_y_pass_end, cantidad, percent_pass_per_zone, pass_complete, percent_complete_zone)  
+  
 
 write_csv(pases_gk, "data/gk_passes_premier_15_16.csv")
   
