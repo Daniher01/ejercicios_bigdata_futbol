@@ -68,11 +68,40 @@ modelo_juego$valor = as.numeric(modelo_juego$valor)
 library(dplyr)
 modelo_juego %>% group_by(posicion) %>% summarise(valor = sum(valor))
 
-
+### CARGAR LOS DATOS
 library(readxl)
 library(janitor)
 events_premier = read.csv('data/statsbomb_premier_15_16_events.csv') %>% clean_names()
+table(events_premier$position_name)
+
+# minutos jugados por jugador
+minutos_jugados <- events_premier %>%
+  filter(!is.na(player_name)) %>%
+  group_by(match_id, player_name) %>%
+  summarise(max_time = max(elapsed_time, na.rm = T)) %>%
+  group_by(player_name) %>%
+  summarise(minutos_totales = as.numeric(round(sum(max_time)/60, 1))) 
+summary(minutos_jugados)
+
+MIN_MINUTOS = 1700
+
+# segmentar las posiciones
+arquero <- c("Goalkeeper")
+defensa_central <- c("Center Back", "Left Center Back", "Right Center Back")
+laterales <- c("Right Back", "Left Back", "Right Wing Back", "Left Wing Back")
+volante_central <- c("Center Defensive Midfield", "Left Defensive Midfield", "Right Defensive Midfield")
+volante_interior <- c("Left Center Midfield", "Right Center Midfield", "Center Midfield")
+volante_ofensivo <- c("Center Attacking Midfield")
+extremo <- c("Left Wing", "Right Wing", "Left Center Forward", "Right Center Forward")
+delantero_centro <- c("Center Forward")
+
+### BUSCAR LAS METRICAS SEGUN POSICION
+# DELANTERO
+
+data_delantero = events_premier %>%    
+  left_join(minutos_jugados, by = "player_name") %>%
+  filter(position_name %in% delantero_centro & minutos_totales > MIN_MINUTOS & type_name == "Shot" & !is.na(shot_statsbomb_xg))
+
+# obtener las metricas de los delanteros
 
 
-events_premier %>% group_by(player_name, position_name) %>%
-  summarise(n = n())
