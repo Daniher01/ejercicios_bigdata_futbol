@@ -61,14 +61,13 @@ modelo_juego <- data.frame(posicion = c(sapply(arquero, "[[", 1), sapply(defensa
                  metrica = c(sapply(arquero, "[[", 2), sapply(defensa_central, "[[", 2), sapply(laterales, "[[", 2), sapply(volante_central, "[[", 2), sapply(voalante_interior, "[[", 2), sapply(volante_ofensivo, "[[", 2), sapply(extremo, "[[", 2), sapply(delantero_centro, "[[", 2)),
                  valor = c(sapply(arquero, "[[", 3), sapply(defensa_central, "[[", 3), sapply(laterales, "[[", 3), sapply(volante_central, "[[", 3), sapply(voalante_interior, "[[", 3), sapply(volante_ofensivo, "[[", 3), sapply(extremo, "[[", 3), sapply(delantero_centro, "[[", 3)))
 
+# verificar que la suma de los valores por poscision los valores no sean mayores a 1
 modelo_juego$posicion = as.factor(modelo_juego$posicion)
 modelo_juego$valor = as.numeric(modelo_juego$valor)
-
 
 library(dplyr)
 modelo_juego %>% group_by(posicion) %>% summarise(valor = sum(valor))
 
 
-library(readxl)
-
-events_premier = read.csv('data/statsbomb_premier_15_16_events.csv')
+# library(readxl)
+# events_premier = read.csv('data/statsbomb_premier_15_16_events.csv')
