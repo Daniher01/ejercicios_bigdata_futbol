@@ -1,0 +1,37 @@
+"player_name","position","nationality","team","foot","age","weight","height","xg_diff_p90","shots_on_target_percent_p90","air_challenges_won_percent_p90","expected_assists_p90","defensive_challenges_won_p90","ball_interceptions_p90","xg_diff_p90_percentil","shots_on_target_percent_p90_percentil","air_challenges_won_percent_p90_percentil","expected_assists_p90_percentil","defensive_challenges_won_p90_percentil","ball_interceptions_p90_percentil","score"
+"Patson Daka","F","Zambia","Leicester","Right",23,71,183,0.09,4.49,0.02,0.07,1.16,1.59,0.94,0.94,0.6,0.37,0.4,0.43,0.36
+"P. Aubameyang","F","Gabon, France","Barcelona","Right",32,80,187,-0.14,4.91,0.03,0.08,1.21,1.53,0.2,1,0.89,0.51,0.43,0.37,0.35
+"Jamie Vardy","F","England","Leicester","Right",35,74,179,0.28,2.55,0.02,0,0.88,1.39,1,0.77,0.6,0,0.23,0.31,0.35
+"Callum Wilson","F","England, Ireland","Newcastle Utd.","-",30,66,180,0.06,3.13,0.02,0,0.66,1.02,0.89,0.89,0.6,0,0.09,0.03,0.35
+"C. Benteke","F","Belgium, Congo DR","Crystal Palace","Right",31,83,190,-0.09,2.56,0.04,0.14,1,2.35,0.31,0.8,1,0.83,0.31,0.83,0.35
+"D. Welbeck","F","England, Ghana","Brighton","Right",31,73,185,0.01,3.27,0.02,0.06,1.41,1.91,0.77,0.91,0.6,0.31,0.57,0.6,0.34
+"K. Iheanacho","F","Nigeria","Leicester","Left",26,82,185,0.06,2.65,0.01,0.2,1.39,1.73,0.89,0.86,0.03,0.94,0.51,0.51,0.34
+"Jean-Philippe Mateta","F","France, Congo DR","Crystal Palace","Right",24,82,192,-0.15,4.53,0.03,0,0.89,1.63,0.14,0.97,0.89,0,0.26,0.46,0.33
+"D. Calvert-Lewin","F","England","Everton","Right",25,71,189,-0.13,2.52,0.03,0.13,1.55,1.36,0.26,0.74,0.89,0.77,0.74,0.23,0.32
+"Odsonne Edouard","F","France, French Guiana","Crystal Palace","Right",24,75,187,-0.05,2.63,0.02,0,1.72,2.2,0.46,0.83,0.6,0,0.83,0.71,0.29
+"Romelu Lukaku","F","Belgium, Congo DR","Chelsea","Left",29,93,191,0,2.08,0.02,0.1,0.47,1.2,0.69,0.51,0.6,0.66,0,0.17,0.28
+"W. Weghorst","F","Netherlands","Burnley","Right",29,84,197,-0.15,2.24,0.03,0,1.59,2.89,0.14,0.63,0.89,0,0.8,0.94,0.28
+"E. Dennis","F","Nigeria","Watford","Right",24,69,175,0.1,1.55,0.01,0.07,2.57,2.24,0.97,0.34,0.03,0.37,0.97,0.77,0.27
+"Kai Lukas Havertz","F","Germany","Chelsea","Left",22,83,190,0,2.31,0.01,0.09,1.52,2.12,0.69,0.69,0.03,0.57,0.71,0.69,0.26
+"João Pedro","F","Brazil","Watford","Right",20,70,182,-0.08,2.01,0.02,0.15,1.91,3.16,0.34,0.49,0.6,0.86,0.91,0.97,0.26
+"Gabriel Jesus","F","Brazil","Man City","Right",25,73,175,-0.18,1.88,0.02,0.27,1.39,2.24,0.11,0.43,0.6,1,0.51,0.77,0.25
+"Rodrigo","F","Spain, Brazil","Leeds United","Left",31,77,182,0.02,1.58,0.01,0.11,1.51,1.8,0.8,0.37,0.03,0.71,0.66,0.57,0.25
+"Richarlison","F","Brazil","Everton","Right",25,83,184,0.03,1.2,0.01,0.1,2,2.43,0.83,0.17,0.03,0.66,0.94,0.89,0.24
+"T. Pukki","F","Finland","Norwich","Right",32,75,180,0.05,1.17,0,0.05,0.73,1.12,0.86,0.14,0,0.26,0.14,0.09,0.23
+"J. Sargent","F","United States","Norwich","Right",22,79,185,-0.02,0.81,0.02,0.05,3.25,3.9,0.66,0,0.6,0.26,1,1,0.23
+"Che Adams","F","England, Antigua and Barbuda","Southampton","Right",25,66,175,-0.04,2.3,0.01,0,1.27,1.56,0.51,0.66,0.03,0,0.46,0.4,0.21
+"D. Ings","F","England","Aston Villa","Right",29,73,178,-0.04,1.79,0.01,0.13,1.36,2.71,0.51,0.4,0.03,0.77,0.49,0.91,0.21
+"Harry Kane","F","England, Ireland","Tottenham","Right",28,86,188,-0.05,1.21,0.01,0.16,0.8,1.52,0.46,0.23,0.03,0.91,0.17,0.34,0.2
+"Jay Rodriguez","F","England, Spain","Burnley","Right",32,80,185,-0.24,1.93,0.02,0.06,1.51,2.42,0,0.46,0.6,0.31,0.66,0.86,0.2
+"Cristiano Ronaldo","F","Portugal","Man United","Right",37,83,187,0,1.5,0.01,0.07,0.58,1.36,0.69,0.29,0.03,0.37,0.06,0.23,0.19
+"Timo Werner","F","Germany","Chelsea","Right",26,75,180,-0.2,2.37,0.01,0.07,0.66,0.79,0.06,0.71,0.03,0.37,0.09,0,0.19
+"Adam Armstrong","F","England","Southampton","Right",25,70,173,-0.14,2.19,0.01,0.12,0.95,1.65,0.2,0.6,0.03,0.74,0.29,0.49,0.19
+"Armando Broja","F","England, Albania","Southampton","Right",20,0,191,-0.04,2.09,0.01,0.04,1.11,1.37,0.51,0.54,0.03,0.23,0.37,0.29,0.19
+"Ollie Watkins","F","England","Aston Villa","Right",26,70,180,-0.03,1.31,0.01,0.08,0.87,1.76,0.6,0.26,0.03,0.51,0.2,0.54,0.18
+"M. Antonio","F","England, Jamaica","West Ham","Right",32,81,180,-0.08,1.09,0.01,0.2,1.07,1.04,0.34,0.06,0.03,0.94,0.34,0.06,0.17
+"Alexandre Lacazette","F","France, Guadeloupe","Arsenal","Right",30,73,176,-0.24,2.18,0.01,0.09,1.9,1.19,0,0.57,0.03,0.57,0.89,0.14,0.17
+"Neal Maupay","F","France, Argentina","Brighton","Right",25,69,173,-0.07,1.1,0.01,0.15,1.43,1.25,0.4,0.09,0.03,0.86,0.6,0.2,0.17
+"Ivan Toney","F","England, Jamaica","Brentford","Right",26,65,185,-0.06,1.2,0.01,0.09,1.49,2.2,0.43,0.17,0.03,0.57,0.63,0.71,0.16
+"Raul Jimenez","F","Mexico","Wolverhampton","Right",31,76,188,-0.03,0.98,0.01,0,1.55,2.09,0.6,0.03,0.03,0,0.74,0.66,0.16
+"J. King","F","Norway, Gambia","Watford","-",30,74,187,-0.11,1.51,0.01,0.07,1.88,1.95,0.29,0.31,0.03,0.37,0.86,0.63,0.13
+"C. Wood","F","New Zealand, England","Newcastle Utd.","Right",30,81,191,-0.19,1.15,0.01,0,0.5,1.15,0.09,0.11,0.03,0,0.03,0.11,0.04
