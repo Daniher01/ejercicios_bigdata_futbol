@@ -12,7 +12,7 @@ library(dplyr)
 defensa_central <- list(c("CD", "air_challenges_won_percent", 0.4),
                         c("CD", "defensive_challenges_won_percent", 0.3),
                         c("CD", "accurate_passes_percent", 0.1),
-                        c("CD", "accurate_crosses_percent", 0.1),
+                        c("CD", "key_passes_accurate", 0.1),
                         c("CD", "fouls", 0.1))
 
 # LATERALES
@@ -85,7 +85,7 @@ premier_clean =  stats_premier %>%
   # agregar metricas que hagan falta
   mutate(xg_diff = round(goals-x_g_expected_goals,2),
          defensive_challenges_won_percent = (defensive_challenges_won/defensive_challenges)*100)
-
+names(premier_clean)
 # pasar los datos a p90
 stats_p90 = premier_clean %>%
   mutate(across(-c(columnas_de_texto, otras_columnas),~round(as.numeric(.x)/minutes_played*90, 2), .names = "{.col}_p90")) %>%
@@ -136,7 +136,7 @@ generar_score_csv <- function(posicion_target_ , modelo_juego_ = modelo_juego, s
   stats_score = stats_percentil %>%
     filter(position %in% posicion_target_) %>%
     inner_join(metrica_ponderada %>% select(player_name, score), by = "player_name") %>%
-    select(player_name, position, nationality, team, foot, age, weight, height, paste0(metricas_valor$metrica, "_p90"), paste0(metricas_valor$metrica, "_p90_percentil"), score) %>%
+    select(player_name, position, minutes_played, nationality, team, foot, age, weight, height, paste0(metricas_valor$metrica, "_p90"), paste0(metricas_valor$metrica, "_p90_percentil"), score) %>%
     arrange(desc(score))
   
   # Guardar el archivo CSV
