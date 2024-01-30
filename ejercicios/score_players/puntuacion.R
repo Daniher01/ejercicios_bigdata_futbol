@@ -87,7 +87,7 @@ premier_clean =  stats_premier %>%
 
 # pasar los datos a p90
 stats_p90 = premier_clean %>%
-  mutate(across(-c(columnas_de_texto, otras_columnas),~(as.numeric(.x)/minutes_played*90), .names = "{.col}_p90")) %>%
+  mutate(across(-c(columnas_de_texto, otras_columnas),~round(as.numeric(.x)/minutes_played*90, 2), .names = "{.col}_p90")) %>%
   select(columnas_de_texto, otras_columnas, ends_with("p90"))
 
 
