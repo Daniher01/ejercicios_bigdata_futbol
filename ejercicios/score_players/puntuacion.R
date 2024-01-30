@@ -3,6 +3,7 @@ library(readxl)
 library(janitor)
 library(stringr)
 library(tidyr)
+library(dplyr)
 stats_premier = read_xlsx('data/players_stats_season_21_22_england_premier_league.xlsx') %>% clean_names()
 
 columnas_de_texto = c("player_num", "player_name", "position", "nationality", "team", "national_team", 
@@ -98,23 +99,29 @@ modelo_juego <- data.frame(posicion = c(sapply(defensa_central, "[[", 1), sapply
 
 ### AGREGAR PUNTAJE A CADA JUGADOR SEUGN LAS METRICAS DE SU POSICION
 ## BUSCAR PUNTAJE PARA DELANTERO
+
+# buscar el valor de cada metrica
 posicion_target = "F"
+metricas_valor = modelo_juego %>% filter(posicion == posicion_target)
 
-metricas_score = modelo_juego %>% filter(posicion == posicion_target)
-
-metricas_score_rebind = pivot_wider(metricas_score, names_from = metrica, names_glue = "{metrica}_valor", values_from = valor)
-
+metricas_valor_rbind <- pivot_wider(metricas_valor, names_from = metrica, names_glue = "{metrica}_valor", values_from = valor)
+# buscar las metricas de cada delantero
 score_delantero = stats_percentil %>% 
   filter(position == posicion_target) %>% 
   select(player_name, metricas_score$metrica)
 
-metrica_with_valor <- merge(score_delantero, metricas_score_rebind, all = TRUE)
+# unir las metricas con el valor de cada metrica
+score_valor <- merge(score_delantero, metricas_valor_rbind, all = TRUE)
 
-metrica_with_valor = metrica_with_valor %>%
-  select(ends_with("_percentil"), ends_with("_valor")) %>%
-  # Cree una nueva columna que contenga el resultado de la multiplicación
-  mutate(across(ends_with("_percentil"), ~ as.numeric(.x) * as.numeric(get(paste0(cur_column(), "_valor"))), .names = "{.col}_x_{str_replace(.col, '_percentil', '_ponderada')}"))
+### Formula para obtener el score
+### elevar al cuadrado cada metrica
+### sumar cada metrica ya elevada al cuadrado
+### sacar la raiz cuadrada de esa suma total
+### sqrt(listado_metricas^2)
 
-
-
+### PONDERAR LAS METRICAS
+metrica_ponderada = score_valor %>%
+  mutate(across(ends_with("_percentil"), ~ round(as.numeric(.x) * as.numeric(get(paste0(cur_column(), "_valor"))), 2), .names = "{.col}_x_{str_replace(.col, '_percentil', '_ponderada')}"), # se agregan los valores de cada metrica
+         across(ends_with("_ponderada"), ~ .x^2, .names = "{.col}_cuadrado")) %>% # se pondera cada metrica segun su valor
+  mutate(score = round(sqrt(rowSums(select(., ends_with("_cuadrado")))), 2)) # se obtiene el score segun la metrica y su ponderacion
 
