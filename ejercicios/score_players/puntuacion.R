@@ -101,17 +101,19 @@ modelo_juego <- data.frame(posicion = c(sapply(defensa_central, "[[", 1), sapply
 posicion_target = "F"
 
 metricas_score = modelo_juego %>% filter(posicion == posicion_target)
-metricas_score
+
+metricas_score_rebind = pivot_wider(metricas_score, names_from = metrica, names_glue = "{metrica}_valor", values_from = valor)
 
 score_delantero = stats_percentil %>% 
   filter(position == posicion_target) %>% 
-  select(player_name, metricas_score$metrica) %>%
-  mutate("xg_diff_p90_percentil_ponderada" = xg_diff_p90_percentil*0.25,
-         "shots_on_target_percent_p90_percentil_ponderada" = shots_on_target_percent_p90_percentil*0.25,
-         "air_challenges_won_percent_p90_percentil_ponderada" = air_challenges_won_percent_p90_percentil*0.25,
-         "expected_assists_p90_percentil_ponderada" =  expected_assists_p90_percentil*0.15,
-         "defensive_challenges_won_p90_percentil_ponderada" = defensive_challenges_won_p90_percentil*0.05,
-         "ball_interceptions_p90_percentil_ponderada" = ball_interceptions_p90_percentil*0.05)
+  select(player_name, metricas_score$metrica)
+
+metrica_with_valor <- merge(score_delantero, metricas_score_rebind, all = TRUE)
+
+metrica_with_valor = metrica_with_valor %>%
+  select(ends_with("_percentil"), ends_with("_valor")) %>%
+  # Cree una nueva columna que contenga el resultado de la multiplicación
+  mutate(across(ends_with("_percentil"), ~ as.numeric(.x) * as.numeric(get(paste0(cur_column(), "_valor"))), .names = "{.col}_x_{str_replace(.col, '_percentil', '_ponderada')}"))
 
 
 
