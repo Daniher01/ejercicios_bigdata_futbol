@@ -144,8 +144,12 @@ generar_score_csv <- function(posicion_target_ , modelo_juego_ = modelo_juego, s
 }
 
 
-generar_score_csv(posicion_target_ = c("F"), nombre_archivo = "ejercicios/score_players/score_F.csv")
 generar_score_csv(posicion_target_ = c("CD"), nombre_archivo = "ejercicios/score_players/score_CD.csv")
+generar_score_csv(posicion_target_ = c("RD", "LD"), nombre_archivo = "ejercicios/score_players/score_RD_LD.csv")
+generar_score_csv(posicion_target_ = c("DM"), nombre_archivo = "ejercicios/score_players/score_DM.csv")
+generar_score_csv(posicion_target_ = c("CM"), nombre_archivo = "ejercicios/score_players/score_CM.csv")
+generar_score_csv(posicion_target_ = c("LM", "RM"), nombre_archivo = "ejercicios/score_players/score_RM_LM.csv")
+generar_score_csv(posicion_target_ = c("F"), nombre_archivo = "ejercicios/score_players/score_F.csv")
 
 
 
