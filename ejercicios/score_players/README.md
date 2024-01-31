@@ -18,7 +18,7 @@
 
 ------------------------------------------------------------------------
 
-Este proyecto es basado en DATAZUL, el primer caso de analytics aplicado al fútbol profesional en chile, que explica como generar un modelo de recomendación basado en estadística descriptiva.
+Este proyecto es basado en [DATAZUL](https://repositorio.uchile.cl/handle/2250/176550), el primer caso de analytics aplicado al fútbol profesional en chile, que explica como generar un modelo de recomendación basado en estadística descriptiva.
 
 El objetivo del modelo es entregar una lista de jugadores que cumplan con ciertos criterios para cada posicion, previamente definidos por la secretaría técnica y el club, tales como superar un umbral de minutos jugados y tengan un rendimiento sobresaliente. Para esto, a cada jugador se le asignará un puntaje segun su posicion y el rendimiento que tenga en esos criterios.
 
