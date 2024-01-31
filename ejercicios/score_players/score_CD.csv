@@ -1,60 +1,60 @@
-"player_name","position","minutes_played","nationality","team","foot","age","weight","height","air_challenges_won_percent_p90","defensive_challenges_won_percent_p90","accurate_passes_percent_p90","key_passes_accurate_p90","fouls_p90","air_challenges_won_percent_p90_percentil","defensive_challenges_won_percent_p90_percentil","accurate_passes_percent_p90_percentil","key_passes_accurate_p90_percentil","fouls_p90_percentil","score"
-"John Stones","CD",1200,"England","Man City","Right",27,70,188,0.06,6.23,0.07,0,0.22,1,1,1,0,1,0.52
-"Christian Kabasele","CD",1284,"Belgium, Congo DR","Watford","Right",31,84,187,0.05,5.16,0.06,0,0.35,0.95,0.98,0.98,0,0.9,0.5
-"Shane Duffy","CD",1563,"Ireland, Northern Ireland","Brighton","Right",30,76,193,0.05,4.52,0.05,0.06,0.75,0.95,0.97,0.86,0.36,0.43,0.49
-"Jonathan Grant Evans","CD",1443,"Northern Ireland","Leicester","Both",34,77,188,0.05,4.31,0.05,0.19,0.94,0.95,0.95,0.86,0.88,0.29,0.49
-"Trevoh Chalobah","CD",1560,"England, Sierra Leone","Chelsea","Right",22,0,190,0.04,3.87,0.05,0.12,0.98,0.88,0.91,0.86,0.74,0.16,0.46
-"Adam Webster","CD",1546,"England","Brighton","Right",27,75,190,0.04,4.13,0.05,0,0.99,0.88,0.93,0.86,0,0.12,0.46
-"A. Christensen","CD",1620,"Denmark","Chelsea","Right",26,82,187,0.04,3.78,0.05,0.06,0.61,0.88,0.88,0.86,0.36,0.57,0.45
-"W. Troost-Ekong","CD",1517,"Nigeria, Netherlands","Watford","Right",28,82,191,0.04,3.85,0.05,0.06,0.77,0.88,0.9,0.86,0.36,0.41,0.45
-"Davinson Sanchez","CD",1777,"Colombia","Tottenham","Right",25,81,187,0.03,3.35,0.05,0.1,0.71,0.6,0.83,0.86,0.62,0.48,0.37
-"N. Collins","CD",1805,"Ireland","Burnley","Right",21,0,193,0.03,3.55,0.04,0.25,1,0.6,0.86,0.66,0.93,0.09,0.37
-"Raphael Varane","CD",1977,"France, Martinique","Man United","Right",29,81,191,0.03,3.23,0.04,0.14,0.23,0.6,0.78,0.66,0.79,0.98,0.36
-"Ben Mee","CD",1956,"England","Burnley","Left",32,74,180,0.03,3.19,0.04,0.14,0.46,0.6,0.76,0.66,0.79,0.71,0.36
-"Samir","CD",1780,"Brazil","Watford","Left",27,73,188,0.03,3.51,0.04,0,0.86,0.6,0.84,0.66,0,0.33,0.35
-"C. Romero","CD",1984,"Argentina","Tottenham","Right",24,79,185,0.03,3.23,0.04,0.05,1.22,0.6,0.78,0.66,0.34,0.02,0.34
-"Liam Cooper","CD",1958,"Scotland, England","Leeds United","Left",30,73,186,0.03,3.23,0.04,0,0.97,0.6,0.78,0.66,0,0.21,0.34
-"Kurt Happy Zouma","CD",2245,"France, Central African Republic","West Ham","Right",27,96,190,0.03,2.85,0.04,0,0.36,0.6,0.72,0.66,0,0.84,0.34
-"K. Ajer","CD",2148,"Norway","Brentford","Right",24,92,198,0.03,2.83,0.03,0.25,0.42,0.6,0.71,0.19,0.93,0.78,0.34
-"Cheikhou Kouyate","CD",2117,"Senegal, Belgium","Crystal Palace","Right",32,74,189,0.03,2.66,0.04,0.09,1.23,0.6,0.67,0.66,0.59,0,0.33
-"Jamaal Lascelles","CD",2240,"England, Barbados","Newcastle Utd.","Right",28,89,188,0.03,2.88,0.03,0.08,0.72,0.6,0.74,0.19,0.52,0.47,0.33
-"Robin Koch","CD",1717,"Germany","Leeds United","Right",25,85,191,0.03,2.66,0.04,0.1,1.15,0.6,0.67,0.66,0.62,0.03,0.33
-"Cesar Azpilicueta","CD",2220,"Spain","Chelsea","Right",32,76,178,0.03,2.55,0.04,0.36,0.97,0.6,0.6,0.66,1,0.21,0.32
-"Victor Lindelof","CD",2539,"Sweden","Man United","Right",27,80,187,0.03,2.58,0.03,0.11,0.67,0.6,0.64,0.19,0.71,0.53,0.32
-"Mason Holgate","CD",2318,"England, Jamaica","Everton","Right",25,70,187,0.03,2.63,0.03,0,1.01,0.6,0.66,0.19,0,0.07,0.31
-"Harry Maguire","CD",2714,"England","Man United","Right",29,100,194,0.03,2.45,0.03,0.07,0.7,0.6,0.53,0.19,0.5,0.5,0.3
-"Thiago Silva","CD",2854,"Brazil","Chelsea","Right",37,79,183,0.02,2.47,0.03,0.13,0.35,0.02,0.59,0.19,0.76,0.9,0.22
-"Ethan Rupert Pinnock","CD",2912,"England, Jamaica","Brentford","Left",28,79,194,0.02,2.32,0.02,0.22,0.28,0.02,0.45,0,0.9,0.93,0.19
-"Pascal Struijk","CD",2252,"Netherlands, Belgium","Leeds United","Left",22,79,190,0.02,2.46,0.04,0,0.96,0.02,0.57,0.66,0,0.24,0.19
-"Ben Godfrey","CD",2194,"England, Jamaica","Everton","Right",24,74,184,0.02,2.55,0.03,0.04,0.66,0.02,0.6,0.19,0.29,0.55,0.19
-"Lewis Dunk","CD",2778,"England","Brighton","Right",30,88,192,0.02,2.31,0.03,0.1,0.26,0.02,0.43,0.19,0.62,0.97,0.18
-"Ben Gibson","CD",2683,"England","Norwich","Left",29,78,185,0.02,2.45,0.03,0,0.37,0.02,0.53,0.19,0,0.83,0.18
-"Daniel Amartey","CD",2289,"Ghana","Leicester","Right",27,79,186,0.02,2.38,0.04,0,0.51,0.02,0.5,0.66,0,0.67,0.18
-"Joel Matip","CD",2992,"Cameroon, Germany","Liverpool","Right",30,90,195,0.02,2.23,0.03,0.27,0.39,0.02,0.38,0.19,0.97,0.81,0.17
-"Ruben Dias","CD",2586,"Portugal","Man City","Right",25,76,186,0.02,2.33,0.03,0.28,0.97,0.02,0.47,0.19,0.98,0.21,0.17
-"Dan Burn","CD",2685,"England","Newcastle Utd.","Left",30,87,200,0.02,2.38,0.03,0.13,0.8,0.02,0.5,0.19,0.76,0.34,0.17
-"C. Cathcart","CD",2601,"Northern Ireland","Watford","Right",33,72,189,0.02,2.37,0.03,0.1,0.42,0.02,0.48,0.19,0.62,0.78,0.17
-"Virgil van Dijk","CD",3276,"Netherlands, Suriname","Liverpool","Right",30,92,193,0.02,2.19,0.03,0.08,0.27,0.02,0.33,0.19,0.52,0.95,0.15
-"Aymeric Laporte","CD",3026,"Spain, France","Man City","Left",28,86,189,0.02,2.19,0.03,0.09,0.42,0.02,0.33,0.19,0.59,0.78,0.14
-"Fabian Lukas Schar","CD",2357,"Switzerland","Newcastle Utd.","Right",30,85,186,0.02,2.29,0.03,0.04,0.95,0.02,0.41,0.19,0.29,0.28,0.13
-"Eric Dier","CD",3303,"England","Tottenham","Right",28,63,188,0.02,1.88,0.02,0.16,0.35,0.02,0.05,0,0.84,0.9,0.12
-"Maximilian Kilman","CD",2944,"England, Ukraine","Wolverhampton","Left",25,0,195,0.02,2.15,0.03,0.06,0.55,0.02,0.29,0.19,0.36,0.64,0.12
-"Caglar Soyuncu","CD",2689,"Turkey","Leicester","Right",26,82,187,0.02,2.23,0.03,0,0.77,0.02,0.38,0.19,0,0.41,0.12
-"Ezri Konsa Ngoyo","CD",2690,"England, Congo DR","Aston Villa","Right",24,77,183,0.02,2.19,0.03,0,0.57,0.02,0.33,0.19,0,0.6,0.12
-"Antonio Rudiger","CD",3271,"Germany, Sierra Leone","Chelsea","Right",29,85,190,0.02,1.97,0.03,0.22,0.96,0.02,0.16,0.19,0.9,0.24,0.11
-"M. Guehi","CD",3475,"England, Cote d'Ivoire","Crystal Palace","Right",21,82,182,0.02,1.89,0.02,0.08,0.34,0.02,0.09,0,0.52,0.91,0.11
-"James Alan Tarkowski","CD",3320,"England, Poland","Burnley","Right",29,81,185,0.02,1.99,0.02,0.16,0.79,0.02,0.19,0,0.84,0.36,0.11
-"Diego Llorente","CD",2523,"Spain","Leeds United","Right",28,75,186,0.02,2.16,0.03,0.04,0.78,0.02,0.31,0.19,0.29,0.38,0.11
-"Benjamin White","CD",3123,"England","Arsenal","Both",24,78,186,0.02,1.88,0.03,0.14,0.55,0.02,0.05,0.19,0.79,0.64,0.1
-"Joachim Andersen","CD",3143,"Denmark","Crystal Palace","Right",25,90,192,0.02,1.91,0.02,0.11,0.52,0.02,0.1,0,0.71,0.66,0.1
-"Pontus Jansson","CD",3593,"Sweden","Brentford","Right",31,89,196,0.02,1.8,0.02,0.1,0.4,0.02,0.02,0,0.62,0.79,0.1
-"Jan Kacper Bednarek","CD",2840,"Poland","Southampton","Right",26,77,189,0.02,2.13,0.03,0.06,0.95,0.02,0.26,0.19,0.36,0.28,0.1
-"Michael Keane","CD",3020,"England, Ireland","Everton","Right",29,82,188,0.02,1.98,0.02,0.06,0.45,0.02,0.17,0,0.36,0.72,0.1
-"Grant Hanley","CD",3092,"Scotland","Norwich","Right",30,81,188,0.02,2.14,0.03,0,0.67,0.02,0.28,0.19,0,0.53,0.1
-"Gabriel Magalhaes","CD",3308,"Brazil","Arsenal","Left",24,78,190,0.02,2.04,0.02,0.03,0.6,0.02,0.21,0,0.24,0.59,0.09
-"Romain Saiss","CD",2949,"Morocco, France","Wolverhampton","Left",32,76,188,0.02,2.12,0.03,0.03,0.89,0.02,0.24,0.19,0.24,0.31,0.08
-"B. Davies","CD",2737,"Wales","Tottenham","Left",29,76,181,0.02,2.07,0.03,0.03,0.99,0.02,0.22,0.19,0.24,0.12,0.08
-"Tyrone Mings","CD",3492,"England, Barbados","Aston Villa","Left",29,77,196,0.02,1.8,0.02,0.08,0.72,0.02,0.02,0,0.52,0.47,0.07
-"Conor Coady","CD",3678,"England","Wolverhampton","Right",29,75,185,0.01,1.42,0.02,0,0.49,0,0,0,0,0.69,0.07
-"S. Karim","CD",3221,"Spain, Ghana","Southampton","Left",23,82,191,0.02,1.92,0.02,0.06,0.98,0.02,0.12,0,0.36,0.16,0.06
-"Craig Dawson","CD",2988,"England","West Ham","Left",32,82,188,0.02,1.94,0.03,0.06,1.08,0.02,0.14,0.19,0.36,0.05,0.06
+"player_name","position","minutes_played","national_team","team","foot","age","weight","height","air_challenges_won_percent_p90","defensive_challenges_won_percent_p90","accurate_passes_percent_p90","key_passes_accurate_p90","fouls_p90","air_challenges_won_percent_p90_percentil","defensive_challenges_won_percent_p90_percentil","accurate_passes_percent_p90_percentil","key_passes_accurate_p90_percentil","fouls_p90_percentil","score"
+"John Stones","CD",1200,"England","Man City","Right",27,70,188,0.8,0.83,0.93,0,0.22,0.98,1,0.9,0,1,0.51
+"Virgil van Dijk","CD",3276,"Netherlands","Liverpool","Right",30,92,193,0.79,0.8,0.92,0.08,0.27,0.97,0.98,0.88,0.52,0.95,0.507
+"Shane Duffy","CD",1563,"Republic of Ireland","Brighton","Right",30,76,193,0.81,0.78,0.89,0.06,0.75,1,0.95,0.64,0.36,0.43,0.495
+"Harry Maguire","CD",2714,"England","Man United","Right",29,100,194,0.78,0.74,0.89,0.07,0.7,0.95,0.83,0.64,0.5,0.5,0.464
+"Grant Hanley","CD",3092,"Scotland","Norwich","Right",30,81,188,0.76,0.74,0.87,0,0.67,0.9,0.83,0.47,0,0.53,0.444
+"Christian Kabasele","CD",1284,"Belgium","Watford","Right",31,84,187,0.75,0.74,0.82,0,0.35,0.86,0.83,0.16,0,0.9,0.432
+"Thiago Silva","CD",2854,"Brazil","Chelsea","Right",37,79,183,0.7,0.78,0.94,0.13,0.35,0.64,0.95,0.97,0.76,0.9,0.413
+"Adam Webster","CD",1546,"-","Brighton","Right",27,75,190,0.77,0.71,0.85,0,0.99,0.91,0.59,0.31,0,0.12,0.404
+"Antonio Rudiger","CD",3271,"Germany","Chelsea","Right",29,85,190,0.74,0.72,0.91,0.22,0.96,0.81,0.71,0.76,0.9,0.24,0.402
+"Raphael Varane","CD",1977,"France","Man United","Right",29,81,191,0.74,0.71,0.91,0.14,0.23,0.81,0.59,0.76,0.79,0.98,0.397
+"Ethan Rupert Pinnock","CD",2912,"Jamaica","Brentford","Left",28,79,194,0.7,0.75,0.79,0.22,0.28,0.64,0.91,0.1,0.9,0.93,0.396
+"Jonathan Grant Evans","CD",1443,"Northern Ireland","Leicester","Both",34,77,188,0.77,0.69,0.86,0.19,0.94,0.91,0.41,0.41,0.88,0.29,0.393
+"Joel Matip","CD",2992,"-","Liverpool","Right",30,90,195,0.7,0.74,0.91,0.27,0.39,0.64,0.83,0.76,0.97,0.81,0.391
+"Jamaal Lascelles","CD",2240,"-","Newcastle Utd.","Right",28,89,188,0.74,0.72,0.8,0.08,0.72,0.81,0.71,0.12,0.52,0.47,0.389
+"Gabriel Magalhaes","CD",3308,"Brazil","Arsenal","Left",24,78,190,0.7,0.75,0.91,0.03,0.6,0.64,0.91,0.76,0.24,0.59,0.388
+"Victor Lindelof","CD",2539,"Sweden","Man United","Right",27,80,187,0.71,0.73,0.9,0.11,0.67,0.72,0.76,0.69,0.71,0.53,0.386
+"Romain Saiss","CD",2949,"Morocco","Wolverhampton","Left",32,76,188,0.75,0.69,0.84,0.03,0.89,0.86,0.41,0.24,0.24,0.31,0.363
+"Dan Burn","CD",2685,"-","Newcastle Utd.","Left",30,87,200,0.71,0.71,0.83,0.13,0.8,0.72,0.59,0.19,0.76,0.34,0.352
+"Liam Cooper","CD",1958,"Scotland","Leeds United","Left",30,73,186,0.72,0.7,0.86,0,0.97,0.78,0.53,0.41,0,0.21,0.352
+"Mason Holgate","CD",2318,"-","Everton","Right",25,70,187,0.73,0.68,0.75,0,1.01,0.79,0.36,0,0,0.07,0.339
+"M. Guehi","CD",3475,"England","Crystal Palace","Right",21,82,182,0.68,0.73,0.9,0.08,0.34,0.52,0.76,0.69,0.52,0.91,0.335
+"Lewis Dunk","CD",2778,"England","Brighton","Right",30,88,192,0.69,0.71,0.91,0.1,0.26,0.6,0.59,0.76,0.62,0.97,0.332
+"S. Karim","CD",3221,"Ghana","Southampton","Left",23,82,191,0.71,0.69,0.83,0.06,0.98,0.72,0.41,0.19,0.36,0.16,0.318
+"N. Collins","CD",1805,"Republic of Ireland","Burnley","Right",21,0,193,0.69,0.71,0.76,0.25,1,0.6,0.59,0.02,0.93,0.09,0.313
+"Aymeric Laporte","CD",3026,"Spain","Man City","Left",28,86,189,0.65,0.74,0.96,0.09,0.42,0.28,0.83,1,0.59,0.78,0.308
+"James Alan Tarkowski","CD",3320,"England","Burnley","Right",29,81,185,0.67,0.73,0.77,0.16,0.79,0.45,0.76,0.05,0.84,0.36,0.306
+"Maximilian Kilman","CD",2944,"-","Wolverhampton","Left",25,0,195,0.68,0.7,0.88,0.06,0.55,0.52,0.53,0.55,0.36,0.64,0.28
+"Jan Kacper Bednarek","CD",2840,"Poland","Southampton","Right",26,77,189,0.7,0.67,0.86,0.06,0.95,0.64,0.28,0.41,0.36,0.28,0.279
+"Kurt Happy Zouma","CD",2245,"-","West Ham","Right",27,96,190,0.67,0.71,0.9,0,0.36,0.45,0.59,0.69,0,0.84,0.276
+"Tyrone Mings","CD",3492,"England","Aston Villa","Left",29,77,196,0.68,0.7,0.84,0.08,0.72,0.52,0.53,0.24,0.52,0.47,0.274
+"Ben Mee","CD",1956,"-","Burnley","Left",32,74,180,0.68,0.69,0.77,0.14,0.46,0.52,0.41,0.05,0.79,0.71,0.264
+"Pontus Jansson","CD",3593,"Sweden","Brentford","Right",31,89,196,0.65,0.72,0.85,0.1,0.4,0.28,0.71,0.31,0.62,0.79,0.259
+"Ben Gibson","CD",2683,"-","Norwich","Left",29,78,185,0.63,0.73,0.85,0,0.37,0.17,0.76,0.31,0,0.83,0.255
+"Trevoh Chalobah","CD",1560,"-","Chelsea","Right",22,0,190,0.68,0.67,0.93,0.12,0.98,0.52,0.28,0.9,0.74,0.16,0.253
+"C. Cathcart","CD",2601,"Northern Ireland","Watford","Right",33,72,189,0.66,0.69,0.87,0.1,0.42,0.41,0.41,0.47,0.62,0.78,0.229
+"Davinson Sanchez","CD",1777,"Colombia","Tottenham","Right",25,81,187,0.67,0.66,0.91,0.1,0.71,0.45,0.24,0.76,0.62,0.48,0.223
+"C. Romero","CD",1984,"-","Tottenham","Right",24,79,185,0.65,0.71,0.88,0.05,1.22,0.28,0.59,0.55,0.34,0.02,0.221
+"Eric Dier","CD",3303,"England","Tottenham","Right",28,63,188,0.64,0.69,0.9,0.16,0.35,0.24,0.41,0.69,0.84,0.9,0.209
+"Samir","CD",1780,"Brazil","Watford","Left",27,73,188,0.66,0.69,0.84,0,0.86,0.41,0.41,0.24,0,0.33,0.203
+"Cheikhou Kouyate","CD",2117,"Senegal","Crystal Palace","Right",32,74,189,0.67,0.63,0.87,0.09,1.23,0.45,0.12,0.47,0.59,0,0.2
+"A. Christensen","CD",1620,"Denmark","Chelsea","Right",26,82,187,0.65,0.68,0.93,0.06,0.61,0.28,0.36,0.9,0.36,0.57,0.194
+"Ruben Dias","CD",2586,"Portugal","Man City","Right",25,76,186,0.62,0.67,0.95,0.28,0.97,0.14,0.28,0.98,0.98,0.21,0.174
+"Joachim Andersen","CD",3143,"Denmark","Crystal Palace","Right",25,90,192,0.65,0.67,0.85,0.11,0.52,0.28,0.28,0.31,0.71,0.66,0.171
+"K. Ajer","CD",2148,"Norway","Brentford","Right",24,92,198,0.61,0.68,0.76,0.25,0.42,0.1,0.36,0.02,0.93,0.78,0.168
+"Cesar Azpilicueta","CD",2220,"Spain","Chelsea","Right",32,76,178,0.64,0.63,0.87,0.36,0.97,0.24,0.12,0.47,1,0.21,0.157
+"Michael Keane","CD",3020,"England","Everton","Right",29,82,188,0.65,0.66,0.83,0.06,0.45,0.28,0.24,0.19,0.36,0.72,0.155
+"Benjamin White","CD",3123,"England","Arsenal","Both",24,78,186,0.63,0.65,0.87,0.14,0.55,0.17,0.19,0.47,0.79,0.64,0.145
+"B. Davies","CD",2737,"Wales","Tottenham","Left",29,76,181,0.65,0.63,0.88,0.03,0.99,0.28,0.12,0.55,0.24,0.12,0.133
+"Craig Dawson","CD",2988,"-","West Ham","Left",32,82,188,0.65,0.64,0.85,0.06,1.08,0.28,0.17,0.31,0.36,0.05,0.131
+"Caglar Soyuncu","CD",2689,"Turkey","Leicester","Right",26,82,187,0.63,0.67,0.88,0,0.77,0.17,0.28,0.55,0,0.41,0.128
+"Daniel Amartey","CD",2289,"Ghana","Leicester","Right",27,79,186,0.57,0.61,0.93,0,0.51,0.05,0.07,0.9,0,0.67,0.117
+"Ezri Konsa Ngoyo","CD",2690,"-","Aston Villa","Right",24,77,183,0.61,0.65,0.89,0,0.57,0.1,0.19,0.64,0,0.6,0.111
+"Conor Coady","CD",3678,"England","Wolverhampton","Right",29,75,185,0.54,0.58,0.91,0,0.49,0.02,0.02,0.76,0,0.69,0.107
+"W. Troost-Ekong","CD",1517,"Nigeria","Watford","Right",28,82,191,0.62,0.65,0.84,0.06,0.77,0.14,0.19,0.24,0.36,0.41,0.104
+"Fabian Lukas Schar","CD",2357,"Switzerland","Newcastle Utd.","Right",30,85,186,0.63,0.6,0.77,0.04,0.95,0.17,0.03,0.05,0.29,0.28,0.083
+"Pascal Struijk","CD",2252,"-","Leeds United","Left",22,79,190,0.6,0.62,0.88,0,0.96,0.09,0.09,0.55,0,0.24,0.081
+"Ben Godfrey","CD",2194,"-","Everton","Right",24,74,184,0.57,0.62,0.81,0.04,0.66,0.05,0.09,0.14,0.29,0.55,0.077
+"Robin Koch","CD",1717,"Germany","Leeds United","Right",25,85,191,0.55,0.51,0.82,0.1,1.15,0.03,0,0.16,0.62,0.03,0.064
+"Diego Llorente","CD",2523,"Spain","Leeds United","Right",28,75,186,0.53,0.6,0.85,0.04,0.78,0,0.03,0.31,0.29,0.38,0.059

@@ -85,10 +85,12 @@ premier_clean =  stats_premier %>%
   # agregar metricas que hagan falta
   mutate(xg_diff = round(goals-x_g_expected_goals,2),
          defensive_challenges_won_percent = (defensive_challenges_won/defensive_challenges)*100)
-names(premier_clean)
+
+
 # pasar los datos a p90
 stats_p90 = premier_clean %>%
-  mutate(across(-c(columnas_de_texto, otras_columnas),~round(as.numeric(.x)/minutes_played*90, 2), .names = "{.col}_p90")) %>%
+  mutate(across(-c(columnas_de_texto, otras_columnas, ends_with("percent")),~round(as.numeric(.x)/minutes_played*90, 2), .names = "{.col}_p90")) %>%
+  mutate(across(ends_with("percent"), ~ifelse(.x > 1, round(as.numeric(.x)/100, 2), .x), .names = "{.col}_p90")) %>%
   select(columnas_de_texto, otras_columnas, ends_with("p90"))
 
 
@@ -99,11 +101,9 @@ MIN_MINUTOS = max(stats_premier$minutes_played)*0.3
 stats_percentil = stats_p90 %>%
   filter(minutes_played > MIN_MINUTOS) %>% # aqui se aplican los filtros
   group_by(position) %>%
-  mutate(across(ends_with("p90"), ~round(percent_rank(.x),2), .names = "{col}_percentil"),
-         # las metricas "negativas" defensivas se cambian a 1-variable
-         fouls_p90_percentil = 1-fouls_p90_percentil)
-
-
+  mutate(across(ends_with("p90"), ~round(percent_rank(.x),2), .names = "{col}_percentil")) %>%
+  # las metricas "negativas" defensivas se cambian a 1-variable
+  mutate(fouls_p90_percentil = 1-fouls_p90_percentil)
 
 ### AGREGAR PUNTAJE A CADA JUGADOR SEUGN LAS METRICAS DE SU POSICION
 generar_score_csv <- function(posicion_target_ , modelo_juego_ = modelo_juego, stats_percentil_ = stats_percentil, nombre_archivo){
@@ -131,12 +131,12 @@ generar_score_csv <- function(posicion_target_ , modelo_juego_ = modelo_juego, s
   metrica_ponderada = score_valor %>%
     mutate(across(ends_with("_percentil"), ~ round(as.numeric(.x) * as.numeric(get(str_replace(cur_column(),"_p90_percentil$", "_valor"))), 2), .names = "{.col}_x_{str_replace(.col, '_p90_percentil', '_ponderada')}"), # se agregan los valores de cada metrica
            across(ends_with("_ponderada"), ~ .x^2, .names = "{.col}_cuadrado")) %>% # se pondera cada metrica segun su valor
-    mutate(score = round(sqrt(rowSums(select(., ends_with("_cuadrado")))), 2)) # se obtiene el score segun la metrica y su ponderacion
+    mutate(score = round(sqrt(rowSums(select(., ends_with("_cuadrado")))), 3)) # se obtiene el score segun la metrica y su ponderacion
   
   stats_score = stats_percentil %>%
     filter(position %in% posicion_target_) %>%
     inner_join(metrica_ponderada %>% select(player_name, score), by = "player_name") %>%
-    select(player_name, position, minutes_played, nationality, team, foot, age, weight, height, paste0(metricas_valor$metrica, "_p90"), paste0(metricas_valor$metrica, "_p90_percentil"), score) %>%
+    select(player_name, position, minutes_played, national_team, team, foot, age, weight, height, paste0(metricas_valor$metrica, "_p90"), paste0(metricas_valor$metrica, "_p90_percentil"), score) %>%
     arrange(desc(score))
   
   # Guardar el archivo CSV
@@ -146,3 +146,10 @@ generar_score_csv <- function(posicion_target_ , modelo_juego_ = modelo_juego, s
 
 generar_score_csv(posicion_target_ = c("F"), nombre_archivo = "ejercicios/score_players/score_F.csv")
 generar_score_csv(posicion_target_ = c("CD"), nombre_archivo = "ejercicios/score_players/score_CD.csv")
+
+
+
+
+
+
+
