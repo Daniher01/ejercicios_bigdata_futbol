@@ -27,16 +27,16 @@ laterales <- list(c("RD", "accurate_crosses_percent", 0.4),
 
 # VOLANTE CENTRAL
 volante_central <- list(c("DM", "key_passes_accurate", 0.35),
-                        c("DM", "defensive_challenges_won", 0.25),
+                        c("DM", "defensive_challenges_won_percent", 0.25),
                         c("DM", "accurate_crosses_percent", 0.2),
                         c("DM", "ball_interceptions", 0.1),
-                        c("DM", "x_g_expected_goals", 0.1))
+                        c("DM", "expected_assists", 0.1))
 
 # VOLANTE INTERIOR
 voalante_interior <- list(c("CM", "key_passes_accurate", 0.3),
                           c("CM", "ball_interceptions", 0.2),
                           c("CM", "expected_assists", 0.2),
-                          c("CM", "defensive_challenges_won", 0.15),
+                          c("CM", "defensive_challenges_won_percent", 0.15),
                           c("CM", "x_g_expected_goals", 0.15))
 
 # EXTREMO
@@ -44,13 +44,13 @@ extremo <- list(c("LM", "challenges_won_percent", 0.3),
                 c("LM", "accurate_crosses_percent", 0.3),
                 c("LM", "x_g_expected_goals", 0.15),
                 c("LM", "expected_assists", 0.15),
-                c("LM", "defensive_challenges_won", 0.05),
+                c("LM", "defensive_challenges_won_percent", 0.05),
                 c("LM", "ball_interceptions", 0.05),
                 c("RM", "challenges_won_percent", 0.3),
                 c("RM", "accurate_crosses_percent", 0.3),
                 c("RM", "x_g_expected_goals", 0.15),
                 c("RM", "expected_assists", 0.15),
-                c("RM", "defensive_challenges_won", 0.05),
+                c("RM", "defensive_challenges_won_percent", 0.05),
                 c("RM", "ball_interceptions", 0.05))
 
 # DELANTERO CENTRO
@@ -58,7 +58,7 @@ delantero_centro <- list(c("F", "xg_diff", 0.25),
                          c("F", "shots_on_target_percent", 0.25),
                          c("F", "air_challenges_won_percent", 0.25),
                          c("F", "expected_assists", 0.15),
-                         c("F", "defensive_challenges_won", 0.05),
+                         c("F", "defensive_challenges_won_percent", 0.05),
                          c("F", "ball_interceptions", 0.05))
 
 modelo_juego <- data.frame(position = c(sapply(defensa_central, "[[", 1), sapply(laterales, "[[", 1), sapply(volante_central, "[[", 1), sapply(voalante_interior, "[[", 1), sapply(extremo, "[[", 1), sapply(delantero_centro, "[[", 1)),
@@ -96,10 +96,11 @@ stats_p90 = premier_clean %>%
 
 ### APLICAR FILTROS de busqueda
 MIN_MINUTOS = max(stats_premier$minutes_played)*0.3
+EDAD_MAX = 29
 
 ### OBTENER PERCENTILES
 stats_percentil = stats_p90 %>%
-  filter(minutes_played > MIN_MINUTOS) %>% # aqui se aplican los filtros
+  filter(minutes_played > MIN_MINUTOS, age <= EDAD_MAX) %>% # aqui se aplican los filtros
   group_by(position) %>%
   mutate(across(ends_with("p90"), ~round(percent_rank(.x),2), .names = "{col}_percentil")) %>%
   # las metricas "negativas" defensivas se cambian a 1-variable

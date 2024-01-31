@@ -1,37 +1,23 @@
-"player_name","position","minutes_played","national_team","team","foot","age","weight","height","xg_diff_p90","shots_on_target_percent_p90","air_challenges_won_percent_p90","expected_assists_p90","defensive_challenges_won_p90","ball_interceptions_p90","xg_diff_p90_percentil","shots_on_target_percent_p90_percentil","air_challenges_won_percent_p90_percentil","expected_assists_p90_percentil","defensive_challenges_won_p90_percentil","ball_interceptions_p90_percentil","score"
-"D. Welbeck","F",1598,"England","Brighton","Right",31,73,185,0.01,0.58,0.41,0.06,1.41,1.91,0.77,0.91,0.8,0.31,0.57,0.6,0.365
-"Jamie Vardy","F",1940,"England","Leicester","Right",35,74,179,0.28,0.55,0.34,0,0.88,1.39,1,0.86,0.43,0,0.23,0.31,0.351
-"Patson Daka","F",1243,"Zambia","Leicester","Right",23,71,183,0.09,0.62,0.22,0.07,1.16,1.59,0.94,1,0.09,0.37,0.4,0.43,0.347
-"Romelu Lukaku","F",1729,"Belgium","Chelsea","Left",29,93,191,0,0.4,0.46,0.1,0.47,1.2,0.69,0.34,0.91,0.66,0,0.17,0.316
-"Jean-Philippe Mateta","F",1213,"-","Crystal Palace","Right",24,82,192,-0.15,0.61,0.43,0,0.89,1.63,0.14,0.94,0.83,0,0.26,0.46,0.315
-"Harry Kane","F",3482,"England","Tottenham","Right",28,86,188,-0.05,0.47,0.4,0.16,0.8,1.52,0.46,0.66,0.77,0.91,0.17,0.34,0.31
-"E. Dennis","F",2732,"Nigeria","Watford","Right",24,69,175,0.1,0.47,0.29,0.07,2.57,2.24,0.97,0.66,0.29,0.37,0.97,0.77,0.31
-"Callum Wilson","F",1496,"England","Newcastle Utd.","-",30,66,180,0.06,0.52,0.28,0,0.66,1.02,0.89,0.83,0.26,0,0.09,0.03,0.31
-"Ivan Toney","F",3151,"-","Brentford","Right",26,65,185,-0.06,0.42,0.5,0.09,1.49,2.2,0.43,0.49,0.97,0.57,0.63,0.71,0.308
-"Kai Lukas Havertz","F",1952,"Germany","Chelsea","Left",22,83,190,0,0.5,0.3,0.09,1.52,2.12,0.69,0.8,0.34,0.57,0.71,0.69,0.296
-"C. Benteke","F",1264,"Belgium","Crystal Palace","Right",31,83,190,-0.09,0.36,0.51,0.14,1,2.35,0.31,0.11,1,0.83,0.31,0.83,0.294
-"P. Aubameyang","F",1117,"Gabon","Barcelona","Right",32,80,187,-0.14,0.61,0.35,0.08,1.21,1.53,0.2,0.94,0.51,0.51,0.43,0.37,0.282
-"Che Adams","F",2195,"Scotland","Southampton","Right",25,66,175,-0.04,0.56,0.34,0,1.27,1.56,0.51,0.89,0.43,0,0.46,0.4,0.28
-"Ollie Watkins","F",3217,"England","Aston Villa","Right",26,70,180,-0.03,0.47,0.36,0.08,0.87,1.76,0.6,0.66,0.6,0.51,0.2,0.54,0.279
-"K. Iheanacho","F",1356,"Nigeria","Leicester","Left",26,82,185,0.06,0.4,0.19,0.2,1.39,1.73,0.89,0.34,0.03,0.94,0.51,0.51,0.279
-"Rodrigo","F",2450,"Spain","Leeds United","Left",31,77,182,0.02,0.43,0.26,0.11,1.51,1.8,0.8,0.54,0.2,0.71,0.66,0.57,0.276
-"D. Calvert-Lewin","F",1392,"England","Everton","Right",25,71,189,-0.13,0.39,0.45,0.13,1.55,1.36,0.26,0.29,0.86,0.77,0.74,0.23,0.27
-"T. Pukki","F",3452,"Finland","Norwich","Right",32,75,180,0.05,0.45,0.1,0.05,0.73,1.12,0.86,0.6,0,0.26,0.14,0.09,0.269
-"Cristiano Ronaldo","F",2642,"Portugal","Man United","Right",37,83,187,0,0.44,0.35,0.07,0.58,1.36,0.69,0.57,0.51,0.37,0.06,0.23,0.263
-"Odsonne Edouard","F",1674,"-","Crystal Palace","Right",24,75,187,-0.05,0.49,0.35,0,1.72,2.2,0.46,0.74,0.51,0,0.83,0.71,0.259
-"J. Sargent","F",1661,"United States","Norwich","Right",22,79,185,-0.02,0.15,0.38,0.05,3.25,3.9,0.66,0,0.71,0.26,1,1,0.254
-"Gabriel Jesus","F",2009,"Brazil","Man City","Right",25,73,175,-0.18,0.42,0.36,0.27,1.39,2.24,0.11,0.49,0.6,1,0.51,0.77,0.251
-"Richarlison","F",2703,"Brazil","Everton","Right",25,83,184,0.03,0.36,0.27,0.1,2,2.43,0.83,0.11,0.23,0.66,0.94,0.89,0.25
-"Armando Broja","F",2107,"Albania","Southampton","Right",20,0,191,-0.04,0.49,0.32,0.04,1.11,1.37,0.51,0.74,0.37,0.23,0.37,0.29,0.242
-"Raul Jimenez","F",2841,"Mexico","Wolverhampton","Right",31,76,188,-0.03,0.31,0.38,0,1.55,2.09,0.6,0.06,0.71,0,0.74,0.66,0.24
-"W. Weghorst","F",1526,"Netherlands","Burnley","Right",29,84,197,-0.15,0.38,0.45,0,1.59,2.89,0.14,0.26,0.86,0,0.8,0.94,0.24
-"C. Wood","F",2893,"New Zealand","Newcastle Utd.","Right",30,81,191,-0.19,0.37,0.48,0,0.5,1.15,0.09,0.2,0.94,0,0.03,0.11,0.236
-"D. Ings","F",2058,"England","Aston Villa","Right",29,73,178,-0.04,0.41,0.29,0.13,1.36,2.71,0.51,0.43,0.29,0.77,0.49,0.91,0.226
-"J. King","F",2441,"Norway","Watford","-",30,74,187,-0.11,0.41,0.37,0.07,1.88,1.95,0.29,0.43,0.66,0.37,0.86,0.63,0.221
-"João Pedro","F",1792,"-","Watford","Right",20,70,182,-0.08,0.4,0.32,0.15,1.91,3.16,0.34,0.34,0.37,0.86,0.91,0.97,0.215
-"M. Antonio","F",3209,"Jamaica","West Ham","Right",32,81,180,-0.08,0.39,0.34,0.2,1.07,1.04,0.34,0.29,0.43,0.94,0.34,0.06,0.212
-"Alexandre Lacazette","F",1895,"-","Arsenal","Right",30,73,176,-0.24,0.46,0.23,0.09,1.9,1.19,0,0.63,0.11,0.57,0.89,0.14,0.191
-"Jay Rodriguez","F",1489,"-","Burnley","Right",32,80,185,-0.24,0.32,0.37,0.06,1.51,2.42,0,0.09,0.66,0.31,0.66,0.86,0.176
-"Neal Maupay","F",2455,"-","Brighton","Right",25,69,173,-0.07,0.3,0.23,0.15,1.43,1.25,0.4,0.03,0.11,0.86,0.6,0.2,0.17
-"Adam Armstrong","F",1523,"-","Southampton","Right",25,70,173,-0.14,0.37,0.25,0.12,0.95,1.65,0.2,0.2,0.17,0.74,0.29,0.49,0.139
-"Timo Werner","F",1369,"Germany","Chelsea","Right",26,75,180,-0.2,0.36,0.21,0.07,0.66,0.79,0.06,0.11,0.06,0.37,0.09,0,0.069
+"player_name","position","minutes_played","national_team","team","foot","age","weight","height","xg_diff_p90","shots_on_target_percent_p90","air_challenges_won_percent_p90","expected_assists_p90","defensive_challenges_won_percent_p90","ball_interceptions_p90","xg_diff_p90_percentil","shots_on_target_percent_p90_percentil","air_challenges_won_percent_p90_percentil","expected_assists_p90_percentil","defensive_challenges_won_percent_p90_percentil","ball_interceptions_p90_percentil","score"
+"Patson Daka","F",1243,"Zambia","Leicester","Right",23,71,183,0.09,0.62,0.22,0.07,0.22,1.59,0.95,1,0.1,0.29,0.05,0.33,0.351
+"Romelu Lukaku","F",1729,"Belgium","Chelsea","Left",29,93,191,0,0.4,0.46,0.1,0.24,1.2,0.76,0.33,0.95,0.57,0.14,0.05,0.329
+"Kai Lukas Havertz","F",1952,"Germany","Chelsea","Left",22,83,190,0,0.5,0.3,0.09,0.36,2.12,0.76,0.86,0.38,0.48,0.57,0.57,0.318
+"Jean-Philippe Mateta","F",1213,"-","Crystal Palace","Right",24,82,192,-0.15,0.61,0.43,0,0.23,1.63,0.1,0.95,0.81,0,0.1,0.38,0.315
+"E. Dennis","F",2732,"Nigeria","Watford","Right",24,69,175,0.1,0.47,0.29,0.07,0.4,2.24,1,0.62,0.29,0.29,0.76,0.71,0.313
+"Ivan Toney","F",3151,"-","Brentford","Right",26,65,185,-0.06,0.42,0.5,0.09,0.39,2.2,0.38,0.52,1,0.48,0.67,0.62,0.31
+"Harry Kane","F",3482,"England","Tottenham","Right",28,86,188,-0.05,0.47,0.4,0.16,0.28,1.52,0.43,0.62,0.76,0.9,0.24,0.24,0.306
+"Ollie Watkins","F",3217,"England","Aston Villa","Right",26,70,180,-0.03,0.47,0.36,0.08,0.3,1.76,0.67,0.62,0.62,0.43,0.29,0.52,0.291
+"Che Adams","F",2195,"Scotland","Southampton","Right",25,66,175,-0.04,0.56,0.34,0,0.31,1.56,0.52,0.9,0.52,0,0.38,0.29,0.288
+"K. Iheanacho","F",1356,"Nigeria","Leicester","Left",26,82,185,0.06,0.4,0.19,0.2,0.3,1.73,0.9,0.33,0,0.95,0.29,0.48,0.274
+"D. Calvert-Lewin","F",1392,"England","Everton","Right",25,71,189,-0.13,0.39,0.45,0.13,0.48,1.36,0.24,0.29,0.86,0.71,0.95,0.14,0.268
+"J. Sargent","F",1661,"United States","Norwich","Right",22,79,185,-0.02,0.15,0.38,0.05,0.49,3.9,0.71,0,0.71,0.24,1,1,0.267
+"Odsonne Edouard","F",1674,"-","Crystal Palace","Right",24,75,187,-0.05,0.49,0.35,0,0.4,2.2,0.43,0.76,0.57,0,0.76,0.62,0.265
+"Gabriel Jesus","F",2009,"Brazil","Man City","Right",25,73,175,-0.18,0.42,0.36,0.27,0.37,2.24,0.05,0.52,0.62,1,0.62,0.71,0.26
+"Armando Broja","F",2107,"Albania","Southampton","Right",20,0,191,-0.04,0.49,0.32,0.04,0.27,1.37,0.52,0.76,0.43,0.19,0.19,0.19,0.257
+"Richarlison","F",2703,"Brazil","Everton","Right",25,83,184,0.03,0.36,0.27,0.1,0.39,2.43,0.86,0.1,0.24,0.57,0.67,0.81,0.252
+"W. Weghorst","F",1526,"Netherlands","Burnley","Right",29,84,197,-0.15,0.38,0.45,0,0.33,2.89,0.1,0.24,0.86,0,0.43,0.9,0.236
+"D. Ings","F",2058,"England","Aston Villa","Right",29,73,178,-0.04,0.41,0.29,0.13,0.4,2.71,0.52,0.48,0.29,0.71,0.76,0.86,0.227
+"João Pedro","F",1792,"-","Watford","Right",20,70,182,-0.08,0.4,0.32,0.15,0.35,3.16,0.29,0.33,0.43,0.81,0.52,0.95,0.203
+"Neal Maupay","F",2455,"-","Brighton","Right",25,69,173,-0.07,0.3,0.23,0.15,0.41,1.25,0.33,0.05,0.14,0.81,0.9,0.1,0.158
+"Adam Armstrong","F",1523,"-","Southampton","Right",25,70,173,-0.14,0.37,0.25,0.12,0.33,1.65,0.19,0.19,0.19,0.67,0.43,0.43,0.135
+"Timo Werner","F",1369,"Germany","Chelsea","Right",26,75,180,-0.2,0.36,0.21,0.07,0.16,0.79,0,0.1,0.05,0.29,0,0,0.051

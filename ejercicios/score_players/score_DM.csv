@@ -1,50 +1,36 @@
-"player_name","position","minutes_played","national_team","team","foot","age","weight","height","key_passes_accurate_p90","defensive_challenges_won_p90","accurate_crosses_percent_p90","ball_interceptions_p90","x_g_expected_goals_p90","key_passes_accurate_p90_percentil","defensive_challenges_won_p90_percentil","accurate_crosses_percent_p90_percentil","ball_interceptions_p90_percentil","x_g_expected_goals_p90_percentil","score"
-"Bruno","DM",1133,"Brazil","Newcastle Utd.","Right",24,74,182,0.48,5.16,0.67,4.45,0.24,0.92,0.83,0.98,0.4,1,0.445
-"Nemanja Matic","DM",1482,"Serbia","Man United","Left",33,85,194,0.43,5.34,0.4,5.47,0.02,0.85,0.88,0.75,0.77,0.02,0.409
-"C. Nørgaard","DM",3298,"Denmark","Brentford","Right",28,76,187,0.35,5.4,0.46,6.11,0.15,0.71,0.9,0.88,0.92,0.83,0.397
-"Paul Pogba","DM",1450,"France","Man United","Both",29,84,191,0.68,4.1,0.17,2.54,0.19,0.96,0.56,0.19,0.02,0.94,0.381
-"Pascal Gross","DM",2177,"-","Brighton","Right",30,78,181,0.87,2.23,0.24,3.35,0.14,1,0.02,0.4,0.08,0.79,0.368
-"Ruben Loftus-Cheek","DM",1533,"-","Chelsea","Right",26,88,190,0.47,4.29,0.22,3.46,0.09,0.88,0.69,0.35,0.15,0.58,0.366
-"P. Højbjerg","DM",3427,"Denmark","Tottenham","Right",26,84,187,0.47,3.83,0.33,4.99,0.06,0.88,0.46,0.56,0.69,0.38,0.359
-"Mateo Kovacic","DM",1678,"Croatia","Chelsea","Right",28,78,176,0.8,3.43,0.2,2.36,0.09,0.98,0.27,0.25,0,0.58,0.356
-"Ashley Westwood","DM",2434,"-","Burnley","Right",32,80,174,0.55,1.66,0.36,4.1,0.03,0.94,0,0.65,0.29,0.06,0.356
-"Rodrigo Bentancur","DM",1460,"Uruguay","Tottenham","Right",24,72,187,0.37,4.75,0.33,4.25,0.05,0.73,0.79,0.56,0.35,0.29,0.349
-"Fred","DM",2159,"Brazil","Man United","Left",29,64,169,0.42,3.71,0.33,5.88,0.07,0.83,0.4,0.56,0.9,0.48,0.342
-"Youri Tielemans","DM",2826,"Belgium","Leicester","Right",25,72,176,0.41,3.85,0.37,3.79,0.15,0.77,0.5,0.69,0.19,0.83,0.337
-"Kalvin Phillips","DM",1736,"England","Leeds United","Right",26,72,178,0.16,5.6,0.6,5.65,0.03,0.27,0.98,0.96,0.85,0.06,0.332
-"Oriol Romeu","DM",3091,"-","Southampton","Right",30,83,183,0.23,4.4,0.5,5.53,0.05,0.54,0.73,0.9,0.83,0.29,0.329
-"James Ward-Prowse","DM",3476,"England","Southampton","Right",27,66,177,0.41,2.59,0.37,5.72,0.14,0.77,0.06,0.69,0.88,0.79,0.327
-"M. Normann","DM",1743,"Norway","Norwich","Right",25,75,179,0.41,4.23,0.14,5.06,0.07,0.77,0.62,0.12,0.73,0.48,0.326
-"Fabinho","DM",2467,"Brazil","Liverpool","Right",28,78,188,0.18,5.58,0.14,4.67,0.2,0.46,0.96,0.12,0.58,0.96,0.312
-"Will Hughes","DM",1127,"-","Crystal Palace","Left",27,74,185,0.16,5.43,0.5,4.63,0.02,0.27,0.92,0.9,0.56,0.02,0.311
-"Oliver Skipp","DM",1447,"England U21","Tottenham","Right",21,70,175,0.25,4.04,0.5,3.61,0.03,0.58,0.54,0.9,0.17,0.06,0.304
-"Scott McTominay","DM",2559,"Scotland","Man United","Right",25,88,191,0.18,5.56,0.08,6.12,0.09,0.46,0.94,0.08,0.94,0.58,0.301
-"A. Lokonga","DM",1235,"Belgium","Arsenal","Right",22,67,183,0.22,3.79,1,4.52,0.06,0.52,0.44,1,0.42,0.38,0.296
-"Rodri","DM",3097,"Spain","Man City","Right",25,82,191,0.17,5.17,0.3,4.94,0.12,0.4,0.85,0.54,0.67,0.75,0.295
-"N'Golo Kante","DM",1888,"France","Chelsea","Right",31,68,168,0.38,3.58,0.17,4.58,0.06,0.75,0.31,0.19,0.48,0.38,0.282
-"Wilfred Ndidi","DM",1735,"Nigeria","Leicester","Right",25,74,183,0,8.04,0,7.26,0.07,0,1,0,1,0.48,0.274
-"Jorginho","DM",2422,"Italy","Chelsea","Right",30,65,180,0.26,3.72,0,4.79,0.22,0.62,0.42,0,0.62,0.98,0.268
-"Yves Bissouma","DM",2275,"Mali","Brighton","Right",25,80,182,0.2,4.63,0,5.18,0.04,0.5,0.75,0,0.75,0.15,0.267
-"Jakub Piotr Moder","DM",1843,"Poland","Brighton","Right",23,78,188,0.34,3.22,0.22,3.27,0.18,0.67,0.19,0.35,0.06,0.92,0.262
-"Granit Xhaka","DM",2507,"Switzerland","Arsenal","Left",29,82,186,0.25,3.16,0.4,4.09,0.07,0.58,0.15,0.75,0.27,0.48,0.26
-"Vitaly Janelt","DM",2464,"-","Brentford","Left",24,79,184,0.26,3.36,0.25,4.57,0.11,0.62,0.25,0.42,0.46,0.71,0.257
-"Allan","DM",2338,"Brazil","Everton","Right",31,73,175,0.08,4.27,0.44,5.5,0.01,0.1,0.67,0.85,0.81,0,0.255
-"Ruben Neves","DM",2911,"Portugal","Wolverhampton","Right",25,80,180,0.34,3.22,0.21,4.58,0.05,0.67,0.19,0.31,0.48,0.29,0.25
-"Tomas Soucek","DM",3318,"Czech Republic","West Ham","Right",27,84,192,0.08,5.07,0.25,5.48,0.16,0.1,0.81,0.42,0.79,0.88,0.249
-"Imran Louza","DM",1507,"Morocco","Watford","Left",23,65,178,0.12,4.12,0.36,7.05,0.09,0.15,0.6,0.65,0.98,0.58,0.236
-"Moussa Sissoko","DM",3471,"France","Watford","Right",32,83,187,0.16,3.68,0.43,4.67,0.09,0.27,0.38,0.81,0.58,0.58,0.226
-"Jonjo Shelvey","DM",2159,"-","Newcastle Utd.","Right",30,80,184,0.17,2.63,0.42,4.79,0.04,0.4,0.08,0.79,0.62,0.15,0.222
-"Adam Forshaw","DM",1668,"-","Leeds United","Right",30,71,175,0.05,4.64,0.33,3.13,0.04,0.04,0.77,0.56,0.04,0.15,0.22
-"Abdoulaye Doucoure","DM",2751,"Mali","Everton","Right",29,75,183,0.16,4.32,0.15,4.42,0.11,0.27,0.71,0.17,0.38,0.71,0.219
-"Joao Moutinho","DM",3248,"Portugal","Wolverhampton","Right",35,61,170,0.17,3.49,0.39,3.88,0.04,0.4,0.29,0.73,0.21,0.15,0.218
-"Declan Rice","DM",3446,"England","West Ham","Right",23,76,188,0.13,4.1,0.29,6.22,0.04,0.19,0.56,0.52,0.96,0.15,0.211
-"Ibrahima Diallo","DM",1126,"-","Southampton","Right",23,68,179,0.16,4.24,0.25,3.36,0.04,0.27,0.65,0.42,0.1,0.15,0.201
-"Billy Gilmour","DM",1972,"Scotland","Norwich","Right",20,60,166,0.23,3.19,0.17,3.38,0.05,0.54,0.17,0.19,0.12,0.29,0.201
-"Josh Brownhill","DM",3172,"-","Burnley","Right",26,69,179,0.14,3.83,0.21,5.05,0.06,0.21,0.46,0.31,0.71,0.38,0.171
-"Thomas Partey","DM",2182,"Ghana","Arsenal","Right",28,77,185,0,3.88,0,4.58,0.16,0,0.52,0,0.48,0.88,0.166
-"Jack Cork","DM",1789,"-","Burnley","Right",32,70,185,0.05,3.02,0.43,4.13,0.04,0.04,0.1,0.81,0.33,0.15,0.166
-"Douglas Luiz","DM",2943,"Brazil","Aston Villa","Right",24,66,177,0.15,3.58,0.27,4.53,0.06,0.23,0.31,0.5,0.44,0.38,0.161
-"Boubakary Soumare","DM",1192,"-","Leicester","Right",23,70,188,0.15,3.62,0.25,4,0.03,0.23,0.35,0.42,0.25,0.06,0.148
-"Adam David Lallana","DM",1700,"-","Brighton","Right",34,72,172,0.16,2.38,0.2,3.92,0.09,0.27,0.04,0.25,0.23,0.58,0.121
-"Leander Dendoncker","DM",2170,"Belgium","Wolverhampton","Right",27,83,188,0.12,3.03,0.2,4.11,0.12,0.15,0.12,0.25,0.31,0.75,0.115
-"Kenny McLean","DM",2906,"Scotland","Norwich","Left",30,70,180,0.06,3.28,0.09,4.58,0.07,0.08,0.23,0.1,0.48,0.48,0.099
+"player_name","position","minutes_played","national_team","team","foot","age","weight","height","key_passes_accurate_p90","defensive_challenges_won_percent_p90","accurate_crosses_percent_p90","ball_interceptions_p90","expected_assists_p90","key_passes_accurate_p90_percentil","defensive_challenges_won_percent_p90_percentil","accurate_crosses_percent_p90_percentil","ball_interceptions_p90_percentil","expected_assists_p90_percentil","score"
+"Bruno","DM",1133,"Brazil","Newcastle Utd.","Right",24,74,182,0.48,0.55,0.67,4.45,0,0.94,0.71,0.97,0.38,0,0.423
+"Ruben Loftus-Cheek","DM",1533,"-","Chelsea","Right",26,88,190,0.47,0.63,0.22,3.46,0.35,0.88,1,0.38,0.15,1,0.418
+"Mateo Kovacic","DM",1678,"Croatia","Chelsea","Right",28,78,176,0.8,0.51,0.2,2.36,0.21,1,0.44,0.26,0,0.91,0.381
+"Paul Pogba","DM",1450,"France","Man United","Both",29,84,191,0.68,0.46,0.17,2.54,0.31,0.97,0.18,0.21,0.03,0.97,0.359
+"Oliver Skipp","DM",1447,"England U21","Tottenham","Right",21,70,175,0.25,0.6,0.5,3.61,0.12,0.56,0.88,0.88,0.18,0.82,0.357
+"P. Højbjerg","DM",3427,"Denmark","Tottenham","Right",26,84,187,0.47,0.48,0.33,4.99,0.03,0.88,0.29,0.65,0.65,0.21,0.349
+"Fred","DM",2159,"Brazil","Man United","Left",29,64,169,0.42,0.4,0.33,5.88,0.04,0.85,0.03,0.65,0.85,0.38,0.342
+"Rodrigo Bentancur","DM",1460,"Uruguay","Tottenham","Right",24,72,187,0.37,0.53,0.33,4.25,0.12,0.74,0.59,0.65,0.32,0.82,0.338
+"C. Nørgaard","DM",3298,"Denmark","Brentford","Right",28,76,187,0.35,0.49,0.46,6.11,0.11,0.71,0.32,0.85,0.88,0.76,0.335
+"James Ward-Prowse","DM",3476,"England","Southampton","Right",27,66,177,0.41,0.39,0.37,5.72,0.21,0.76,0,0.76,0.82,0.91,0.332
+"Youri Tielemans","DM",2826,"Belgium","Leicester","Right",25,72,176,0.41,0.47,0.37,3.79,0.13,0.76,0.21,0.76,0.21,0.88,0.326
+"Granit Xhaka","DM",2507,"Switzerland","Arsenal","Left",29,82,186,0.25,0.53,0.4,4.09,0.11,0.56,0.59,0.82,0.26,0.76,0.309
+"A. Lokonga","DM",1235,"Belgium","Arsenal","Right",22,67,183,0.22,0.53,1,4.52,0,0.5,0.59,1,0.41,0,0.305
+"M. Normann","DM",1743,"Norway","Norwich","Right",25,75,179,0.41,0.51,0.14,5.06,0.05,0.76,0.44,0.12,0.71,0.5,0.305
+"Will Hughes","DM",1127,"-","Crystal Palace","Left",27,74,185,0.16,0.56,0.5,4.63,0.08,0.26,0.79,0.88,0.56,0.71,0.298
+"Rodri","DM",3097,"Spain","Man City","Right",25,82,191,0.17,0.6,0.3,4.94,0.03,0.38,0.88,0.62,0.62,0.21,0.289
+"Yves Bissouma","DM",2275,"Mali","Brighton","Right",25,80,182,0.2,0.6,0,5.18,0.04,0.47,0.88,0,0.74,0.38,0.284
+"Declan Rice","DM",3446,"England","West Ham","Right",23,76,188,0.13,0.6,0.29,6.22,0.03,0.15,0.88,0.59,0.94,0.21,0.272
+"Vitaly Janelt","DM",2464,"-","Brentford","Left",24,79,184,0.26,0.5,0.25,4.57,0.07,0.62,0.35,0.44,0.47,0.68,0.268
+"Jakub Piotr Moder","DM",1843,"Poland","Brighton","Right",23,78,188,0.34,0.47,0.22,3.27,0.05,0.65,0.21,0.38,0.06,0.5,0.254
+"Fabinho","DM",2467,"Brazil","Liverpool","Right",28,78,188,0.18,0.57,0.14,4.67,0,0.41,0.82,0.12,0.59,0,0.252
+"Kalvin Phillips","DM",1736,"England","Leeds United","Right",26,72,178,0.16,0.5,0.6,5.65,0.05,0.26,0.35,0.94,0.79,0.5,0.247
+"Ruben Neves","DM",2911,"Portugal","Wolverhampton","Right",25,80,180,0.34,0.43,0.21,4.58,0.03,0.65,0.12,0.32,0.5,0.21,0.246
+"Tomas Soucek","DM",3318,"Czech Republic","West Ham","Right",27,84,192,0.08,0.58,0.25,5.48,0.03,0.06,0.85,0.44,0.76,0.21,0.244
+"Scott McTominay","DM",2559,"Scotland","Man United","Right",25,88,191,0.18,0.53,0.08,6.12,0.04,0.41,0.59,0.09,0.91,0.38,0.228
+"Boubakary Soumare","DM",1192,"-","Leicester","Right",23,70,188,0.15,0.55,0.25,4,0,0.21,0.71,0.44,0.24,0,0.214
+"Wilfred Ndidi","DM",1735,"Nigeria","Leicester","Right",25,74,183,0,0.55,0,7.26,0,0,0.71,0,1,0,0.206
+"Billy Gilmour","DM",1972,"Scotland","Norwich","Right",20,60,166,0.23,0.42,0.17,3.38,0.05,0.53,0.09,0.21,0.12,0.5,0.202
+"Imran Louza","DM",1507,"Morocco","Watford","Left",23,65,178,0.12,0.45,0.36,7.05,0,0.09,0.15,0.74,0.97,0,0.187
+"Ibrahima Diallo","DM",1126,"-","Southampton","Right",23,68,179,0.16,0.51,0.25,3.36,0.08,0.26,0.44,0.44,0.09,0.71,0.182
+"Josh Brownhill","DM",3172,"-","Burnley","Right",26,69,179,0.14,0.52,0.21,5.05,0.06,0.18,0.53,0.32,0.68,0.62,0.181
+"Abdoulaye Doucoure","DM",2751,"Mali","Everton","Right",29,75,183,0.16,0.52,0.15,4.42,0.03,0.26,0.53,0.18,0.35,0.21,0.167
+"Douglas Luiz","DM",2943,"Brazil","Aston Villa","Right",24,66,177,0.15,0.41,0.27,4.53,0.06,0.21,0.06,0.56,0.44,0.62,0.149
+"Thomas Partey","DM",2182,"Ghana","Arsenal","Right",28,77,185,0,0.5,0,4.58,0,0,0.35,0,0.5,0,0.103
+"Leander Dendoncker","DM",2170,"Belgium","Wolverhampton","Right",27,83,188,0.12,0.47,0.2,4.11,0.04,0.09,0.21,0.26,0.29,0.38,0.092
