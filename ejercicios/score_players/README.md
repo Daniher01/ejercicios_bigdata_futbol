@@ -66,5 +66,3 @@ En la siguiente tabla se puede ver a cada posicion con una serie de métricas a 
     En el gráfico se puede observar que el jugador que mejor puntaje tiene para el estilo de juego de la posicón de delantero es Patson Daka jugador del Leicester con un puntaje de 0.351, también que del top 10, todos tienen un puntaje mayor de 0.27 y 7 de ellos tiene un puntaje mayor a 0.3. Para facilitarle el proceso al scout, vamos a seleccionar a los 5 jugadores con mejor puntaje para compararlos entre ellos y ver en que se diferencian y en que sobresalen.
 
 6.  **Comparación de jugadores**
-
-    comparar top5 jugadores y explicar por que elegir esos top5
