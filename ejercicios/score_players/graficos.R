@@ -4,6 +4,7 @@ library(ggplot2)
 library(forcats)
 library(glue)
 library(ggtext)
+library(gt)
 # paquete para personalizar fuentes
 library(showtext)
 font_add_google('Fira Sans', 'firasans')
@@ -141,3 +142,37 @@ ggsave(glue("ejercicios/score_players/graficos/radar__{player_2$player_name[2]}.
 ggsave(glue("ejercicios/score_players/graficos/radar__{player_3$player_name[3]}.png"), plot = player_3_plot, height = 10, width = 10)
 ggsave(glue("ejercicios/score_players/graficos/radar__{player_4$player_name[4]}.png"), plot = player_4_plot, height = 10, width = 10)
 ggsave(glue("ejercicios/score_players/graficos/radar__{player_5$player_name[5]}.png"), plot = player_5_plot, height = 10, width = 10)
+
+names(players_score_delantero)
+
+# tabla de top5 jugadores
+delanteros_info = players_score_delantero %>% head(5) %>% 
+  select(player_name, position, minutes_played, national_team, foot, age, height, ends_with("p90"), score) %>%
+  mutate(across(ends_with("_percent_p90"), ~paste0(.x*100, "%")),
+         position = "Delantero") %>%
+  rename(
+    "Nombre del jugador" = player_name,
+    "Posición" = position,
+    "Minutos jugados" = minutes_played,
+    "Selección nacional" = national_team,
+    "Pie hábil" = foot,
+    "Edad" = age,
+    "Altura" = height,
+    "Diferencia Goles vs xG" = xg_diff_p90,
+    "Tiros a puerta" = shots_on_target_percent_p90,
+    "Duelos aéreos ganados" = air_challenges_won_percent_p90,
+    "xA" = expected_assists_p90,
+    "Duelos defensivos ganados" = defensive_challenges_won_percent_p90,
+    "Intercepciones" = ball_interceptions_p90
+  ) %>% 
+  gt() %>%
+  tab_header(
+    title = md("Top 5 delanteros con mejor puntaje"),
+    subtitle = md("estadísticas cada 90 minutos")
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels(columns = everything())
+  )
+
+gtsave(data = delanteros_info, file = "ejercicios/score_players/graficos/tabla_top5_delanteros.png")
