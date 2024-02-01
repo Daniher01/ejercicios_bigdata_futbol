@@ -59,7 +59,7 @@ En la siguiente tabla se puede ver a cada posicion con una serie de métricas a 
 
 5.  **Generar el Score del jugador**
 
-    El score es un puntaje que representa el rendimiento de un jugador en una determinada posición y según el estilo de juego que necesite el club para esa posición.
+    El score es un puntaje que representa el rendimiento de un jugador en una determinada posición y según el estilo de juego que necesite el club para esa posición. Se calcula multiplicando cad métrica por el valor que tenga esa métrica (según el estilo de juego), elevarlas al cuadrado, sumar todas las métricas y luego obtener la raíz cuadrada de ese valor.
 
     ![](graficos/top10_score.png)
 
