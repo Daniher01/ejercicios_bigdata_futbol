@@ -1,4 +1,6 @@
 library(fmsb)
+library(dplyr)
+library(janitor)
 
 data_players = read.csv("ejercicios/score_players/data_score/modelo2/score_F.csv") %>% clean_names() %>% head(3)
 
@@ -23,6 +25,7 @@ par(mar = c(5, 5, 2, 2))  # Ajusta los márgenes superior, derecho, inferior e i
 radarchart(data_players %>% select(ends_with("percentil")), 
            title = "Score",
            axistype = 1,
+           vlcex = 0.8,
            cglty = 1,       # Tipo de línea del grid
            cglcol = "gray", # Color líneas grid
            pcol = 2:4,      # Color para cada línea
@@ -33,4 +36,5 @@ radarchart(data_players %>% select(ends_with("percentil")),
 
 leyenda_data = data_players %>% slice(-c(1, 2))
 # Agregar leyenda con los nombres de los jugadores
-legend("topright", inset = c(-0.1, 0), legend = leyenda_data$player_name, fill = areas, title = "Players")
+legend("topright", legend = paste(leyenda_data$player_name, leyenda_data$score), fill = areas, title = "Players", cex = 1, bty = "n")
+
