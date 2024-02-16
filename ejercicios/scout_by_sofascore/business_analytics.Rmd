@@ -1,0 +1,150 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+# Analisis exploratorio de datos del torneo chileno de sofascore
+
+### Carga de librerias
+
+```{r}
+library(readxl)
+library(janitor)
+library(dplyr)
+library(ggplot2)
+library(cowplot)
+library(stringr)
+```
+
+### Carga de los datos
+
+```{r}
+stats_defenders = read.csv('data/stats_Chile_Primera_Division_2023_Defenders_sofascore.csv', sep = ";") %>% clean_names() %>% mutate(position = "D")
+stats_forwards = read.csv('data/stats_Chile_Primera_Division_2023_Forwards_sofascore.csv', sep = ";") %>% clean_names() %>% mutate(position = "F")
+stats_midfielders = read.csv('data/stats_Chile_Primera_Division_2023_Midfielders_sofascore.csv', sep = ";") %>% clean_names() %>% mutate(position = "M")
+
+# Unir los dataframes
+stats_players = bind_rows(stats_defenders, stats_midfielders, stats_forwards)
+
+```
+
+## Business Analytics
+
+```{r}
+str(stats_players)
+
+```
+
+### Análisis de nulos
+
+```{r}
+# Contar valores nulos por columna
+valores_nulos <- colSums(is.na(stats_players))
+
+# Ordenar los resultados en orden descendente
+valores_nulos_ordenados <- sort(valores_nulos, decreasing = TRUE)
+
+valores_nulos_ordenados
+
+```
+
+Conclusiones
+
+-   eliminar expected_goals
+
+```{r}
+stats_players <- stats_players %>% select(-expected_goals)
+stats_players
+```
+
+### EDA variables categóricas
+
+```{r}
+graficos_eda_categoricos <- function(cat) {
+  # Calculamos el número de filas que necesitamos
+  filas <- ceiling(ncol(cat) / 2)
+
+  # Creamos una lista para almacenar los gráficos
+  lista_graficos <- list()
+
+  # Creamos el bucle que va añadiendo gráficos a la lista
+  for (i in 1:ncol(cat)) {
+    plot <- ggplot(cat, aes_string(y = names(cat)[i])) +
+      geom_bar(stat = "count", fill = "skyblue") +
+      labs(title = names(cat)[i]) +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)) +
+      scale_x_discrete(labels = function(x) str_wrap(x, width = 15))
+
+    lista_graficos[[i]] <- plot
+  }
+
+  # Organizamos los gráficos en una única visualización
+  f <- plot_grid(plotlist = lista_graficos, ncol = 2)
+
+  # Ajustamos el tamaño del gráfico y agregamos título
+  f <- f + theme(plot.title = element_text(hjust = 0.5))
+  f <- f + labs(title = "Gráficos EDA Categóricos")
+  f <- f + theme(plot.title = element_text(size = 14, face = "bold"))
+
+  # Imprimimos la visualización final
+  print(f)
+}
+
+
+```
+
+```{r}
+graficos_eda_categoricos(stats_players %>% select_if(is.character) %>% select(-player))
+
+```
+
+Conclusiones:
+
+-   No hay variables categóricas que se tengan que eliminar
+
+-   No hay variables por imputar
+
+### EDA variables numéricas
+
+```{r}
+estadisticos_cont <- function(num) {
+  # Calculamos describe
+  estadisticos <- as.data.frame(t(sapply(num, summary)))
+  
+  # Añadimos la mediana
+  medianas <- sapply(num, median)
+  estadisticos$Median <- medianas
+  
+  
+  # Lo devolvemos
+  print(estadisticos)
+}
+
+```
+
+```{r}
+estadisticos_cont(select_if(stats_players, is.numeric))
+
+```
+
+Conclusiones
+
+valores a eliminar:
+
+-   saves -\> no tiene valores
+
+-   saved_shots_from_inside_the_box -\> no tiene valores
+
+-   saved_shots_from_outside_the_box -\> no tiene valores
+
+-   high_claims -\> no tiene valores - successful_runs_out -\> no tiene
+    valores
+
+-   punches -\> no tiene valores
+
+-   runs_out -\> no tiene valores
+
+```{r}
+stats_players <- stats_players %>% select(-c(saves, saved_shots_from_inside_the_box, saved_shots_from_outside_the_box, high_claims, successful_runs_out, punches,  runs_out))
+```
