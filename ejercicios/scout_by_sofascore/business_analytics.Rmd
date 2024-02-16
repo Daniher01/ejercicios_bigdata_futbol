@@ -16,6 +16,7 @@ library(ggplot2)
 library(cowplot)
 library(forcats)
 library(stringr)
+library(fmsb)
 # paquete para personalizar fuentes
 library(showtext)
 font_add_google('Fira Sans', 'firasans')
@@ -150,28 +151,58 @@ valores a eliminar:
 
 -   runs_out -\> no tiene valores
 
-```{r}
-stats_players <- stats_players %>% select(-c(saves, saved_shots_from_inside_the_box, saved_shots_from_outside_the_box, high_claims, successful_runs_out, punches,  runs_out))
-```
+Valores a filtrar:
 
+-   minutesplayed -\> elegir un umbral minumo de minutos jugados
+
+```{r}
+
+stats_players <- stats_players %>% 
+  # eliminar variables
+  select(-c(saves, saved_shots_from_inside_the_box, saved_shots_from_outside_the_box, high_claims, successful_runs_out, punches,  runs_out)) %>%
+  # filtrar variables
+  filter(minutesplayed >= max(minutesplayed) * 0.3)
+
+
+```
 
 ## Análisis Descriptivo
 
+#### Contextualizar datos a p90
+
 ```{r}
-stats_players
+stats_p90 = stats_players %>%
+  mutate(across(-c(player, position, team, minutesplayed, rating),~round(as.numeric(.x)/minutesplayed*90, 2), .names = "{.col}_p90")) %>%
+  select(player, position, team, minutesplayed, rating, ends_with("p90"))
+
+```
+
+#### Obtener percentiles de las métricas
+```{r}
+stats_percentil = stats_p90 %>%
+  group_by(position) %>%
+  mutate(across(ends_with("p90"), ~round(percent_rank(.x), 2), .names = "{.col}_{str_replace(.col, 'p90', 'percentil')}")) %>%
+  ungroup()
 ```
 
 
-### Top 10 jugadores con mejor raging
 
 ```{r}
-ggplot(stats_players %>% arrange(desc(rating)) %>% head(10), aes(y = rating, x = fct_reorder(player, rating))) +
+stats_percentil
+```
+
+### Top 10 jugadores con mejor puntaje
+
+```{r}
+ggplot(stats_p90 %>% arrange(desc(rating)) %>% head(10), aes(y = rating, x = fct_reorder(player, rating))) +
   geom_bar(stat = "identity", fill = "#1D24CA", col = "#252525", alpha = 0.9, width = 0.8) +
   coord_flip() +
   theme_bw() +
   # textos
   labs(y = "Nota Sofascore", x = "Jugador",
-       title = "Top 10 jugadores con mejor puntuación de sofascore") +
+       title = "Top 10 jugadores con mejor puntuación",
+       subtitle = "Raiting de sofascore",
+       caption = "Datos de Sofascore") +
   # escalas
   scale_y_continuous(breaks = seq(0, 7, 0.5), labels = seq(0, 7, 0.5), limits = c(0, 7.5)) +
     # tema
@@ -186,7 +217,109 @@ ggplot(stats_players %>% arrange(desc(rating)) %>% head(10), aes(y = rating, x =
         plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
         legend.position = "none") +
     # label
-  geom_text(aes(label = rating),  hjust = 1.5, col = "grey80", size = 4)
+  geom_text(aes(label = rating),  hjust = 1.5, col = "grey80", size = 4) +
+  geom_text(aes(label = team), hjust = 2, color = "grey80", size = 4, alpha = 0.5)
   
 ```
 
+### Top 3 jugadores con mejor puntaje por posición
+
+#### Métricas por posición
+```{r}
+names(stats_players)
+
+metrics_defender <- c("interceptions", "tackles", "aerial_duels_won_percentage", "accurate_passes_percentage", "accurate_long_balls_percentage", "rating")
+
+metrics_midfielders <- c("interceptions", "accurate_passes_percentage", "accurate_long_balls_percentage", "key_passes", "shots_on_target", "rating")
+
+metrics_fordward <- c("interceptions", "aerial_duels_won_percentage", "key_passes", "goal_conversion_percentage", "shots_on_target", "rating")
+```
+
+
+#### Defensas
+
+```{r}
+top_defenders = stats_percentil %>% filter(position == "D") %>% arrange(desc(rating)) %>% head(3)
+
+
+ggplot(top_defenders, 
+       aes(y = rating, x = fct_reorder(player, rating))) +
+  geom_bar(stat = "identity", fill = "#1D24CA", col = "#252525", alpha = 0.9, width = 0.8) +
+  coord_flip() +
+  theme_bw() +
+  # textos
+  labs(y = "Nota Sofascore", x = "Jugador",
+       title = "Top 5 degensas con mejor puntuación",
+       subtitle = "Raiting de sofascore",
+       caption = "Datos de Sofascore") +
+  # escalas
+  scale_y_continuous(breaks = seq(0, 7, 0.5), labels = seq(0, 7, 0.5), limits = c(0, 7.5)) +
+    # tema
+  theme(panel.background = element_rect(fill = "grey90", colour = "#252525"),
+        plot.background = element_rect(fill = "grey90", colour = "transparent"),
+        panel.grid.minor.x = element_blank(),
+        panel.grid = element_line(colour = "grey80", size = 0.05),
+        axis.ticks = element_line(colour = "#252525"),
+        axis.text = element_text(colour = "#252525"),
+        title = element_text(colour = "#252525"),
+        text = element_text(family = 'firasans', colour = "#252525", size = 12),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        legend.position = "none") +
+    # label
+  geom_text(aes(label = rating),  hjust = 1.5, col = "grey80", size = 4) +
+  geom_text(aes(label = team), hjust = 2, color = "grey80", size = 4, alpha = 0.5)
+
+```
+```{r}
+
+# Agregar una fila con todos los valores 1
+fila_1 <- rep(1, ncol(top_defenders))
+
+# Agregar una fila con todos los valores 0
+fila_2 <- rep(0, ncol(top_defenders))
+
+# Agregar las filas al inicio del dataframe
+top_defenders <- rbind(fila_1, fila_2, top_defenders)
+
+# Obtener nombres de las columnas seleccionadas
+selected_column_names <- colnames(top_defenders %>% select(matches(paste0(metrics_defender, "_percentil"))))
+
+# Nombres descriptivos
+names_descriptive <- c("Intercepciones", "Tackles", "Duelos Aéreos Ganados %", "Precisión de Pases", "Precisión de Pases Largos")
+
+# Renombrar columnas usando rename_with
+top_defenders = top_defenders %>%
+  rename_with(~ names_descriptive, matches(paste0(metrics_defender, "_percentil")))
+
+# Colores de las áreas
+areas <- c(rgb(1, 0, 0, 0.25),
+           rgb(0, 1, 0, 0.25),
+           rgb(0, 0, 1, 0.25))
+
+# Establecer el tamaño del gráfico
+#par(mar = c(5, 5, 2, 2))  # Ajusta los márgenes superior, derecho, inferior e izquierdo
+# Ajustar tamaño del gráfico
+par(mfrow = c(1, 1), mar = c(3, 1, 4, 1))  # Configurar una fila y una columna
+
+radarchart(top_defenders %>% select(names_descriptive), 
+           title = "Top 3 Defensores",
+           axistype = 0,
+           vlcex = 0.8,
+           cglty = 1,       # Tipo de línea del grid
+           cglcol = "gray", # Color líneas grid
+           pcol = 2:4,      # Color para cada línea
+           plwd = 2,        # Ancho para cada línea
+           plty = 1,        # Tipos de línea
+           pfcol = areas)   # Color de las áreas
+
+
+
+leyenda_data = top_defenders %>% slice(-c(1, 2))
+# Agregar leyenda con los nombres de los jugadores
+legend("topleft", legend = paste(leyenda_data$player, leyenda_data$rating), fill = areas, title = "Jugadores", cex = 1, bty = "n")
+
+
+top_defenders %>% select(names_descriptive)
+```
+
+jugadores por posiciones
