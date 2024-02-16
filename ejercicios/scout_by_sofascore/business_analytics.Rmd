@@ -14,7 +14,12 @@ library(janitor)
 library(dplyr)
 library(ggplot2)
 library(cowplot)
+library(forcats)
 library(stringr)
+# paquete para personalizar fuentes
+library(showtext)
+font_add_google('Fira Sans', 'firasans')
+showtext_auto()
 ```
 
 ### Carga de los datos
@@ -148,3 +153,40 @@ valores a eliminar:
 ```{r}
 stats_players <- stats_players %>% select(-c(saves, saved_shots_from_inside_the_box, saved_shots_from_outside_the_box, high_claims, successful_runs_out, punches,  runs_out))
 ```
+
+
+## Análisis Descriptivo
+
+```{r}
+stats_players
+```
+
+
+### Top 10 jugadores con mejor raging
+
+```{r}
+ggplot(stats_players %>% arrange(desc(rating)) %>% head(10), aes(y = rating, x = fct_reorder(player, rating))) +
+  geom_bar(stat = "identity", fill = "#1D24CA", col = "#252525", alpha = 0.9, width = 0.8) +
+  coord_flip() +
+  theme_bw() +
+  # textos
+  labs(y = "Nota Sofascore", x = "Jugador",
+       title = "Top 10 jugadores con mejor puntuación de sofascore") +
+  # escalas
+  scale_y_continuous(breaks = seq(0, 7, 0.5), labels = seq(0, 7, 0.5), limits = c(0, 7.5)) +
+    # tema
+  theme(panel.background = element_rect(fill = "grey90", colour = "#252525"),
+        plot.background = element_rect(fill = "grey90", colour = "transparent"),
+        panel.grid.minor.x = element_blank(),
+        panel.grid = element_line(colour = "grey80", size = 0.05),
+        axis.ticks = element_line(colour = "#252525"),
+        axis.text = element_text(colour = "#252525"),
+        title = element_text(colour = "#252525"),
+        text = element_text(family = 'firasans', colour = "#252525", size = 12),
+        plot.margin = margin(0.7, 1, 0.5, 0.5, "cm"),
+        legend.position = "none") +
+    # label
+  geom_text(aes(label = rating),  hjust = 1.5, col = "grey80", size = 4)
+  
+```
+
